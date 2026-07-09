@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palestra & Fitness | Centro Sportivo Michelangelo</title>
+    <style>
+        /* === INTESTAZIONE E STILE IDENTICI ALLA HOME === */
+        :root {
+            --primary-color: #4ade80; 
+            --accent-color: #facc15; 
+            --dark-bg: #064e3b; 
+            --card-bg: #047857; 
+            --text-light: #ffffff; 
+            --text-muted: #d1fae5; 
+            --paypal-color: #ffc439; /* Giallo ufficiale PayPal per il bottone */
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER E NAVIGAZIONE */
+        header {
+            background-color: rgba(2, 44, 34, 0.95);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--primary-color); }
+
+        nav a {
+            color: white; margin-left: 25px; font-weight: 600;
+            font-size: 15px; text-transform: uppercase; transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-color); }
+        nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+
+        /* HERO SECTION PALESTRA */
+        .hero { padding: 80px 5%; text-align: center; }
+        
+        .hero h1 {
+            font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
+            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
+        
+        .hero-image {
+            width: 100%; height: 400px; object-fit: cover; border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-color);
+        }
+
+        /* SEZIONE DETTAGLI PALESTRA */
+        .gym-details { padding: 80px 5%; }
+        .section-title { text-align: center; font-size: 40px; margin-bottom: 50px; text-transform: uppercase; }
+        
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;
+        }
+
+        .detail-card {
+            background-color: var(--card-bg); padding: 40px 30px; border-radius: 12px;
+            text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-top: 4px solid var(--primary-color);
+        }
+        .detail-card h3 { font-size: 26px; margin-bottom: 15px; color: white; }
+        .detail-card p { font-size: 16px; color: var(--text-muted); }
+        .detail-card .icon { font-size: 50px; margin-bottom: 20px; }
+
+        /* SEZIONE LISTINO PREZZI E PAGAMENTI */
+        .pricing-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
+        
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;
+        }
+        
+        .price-card {
+            background-color: var(--card-bg); border-radius: 16px; padding: 40px 30px;
+            text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border: 2px solid transparent; position: relative; transition: transform 0.3s;
+        }
+        .price-card:hover { transform: translateY(-5px); }
+        
+        /* Evidenziazione per l'offerta Annuale (Marketing Strategico) */
+        .price-card.featured {
+            border-color: var(--accent-color);
+        }
+        .badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background-color: var(--accent-color); color: #022c22; padding: 4px 15px;
+            border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase;
+        }
+        
+        .plan-name { font-size: 22px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; color: white; }
+        .plan-price { font-size: 48px; font-weight: 900; color: white; margin-bottom: 5px; }
+        .plan-price span { font-size: 18px; font-weight: 500; color: var(--text-muted); }
+        .plan-savings { font-size: 14px; color: var(--accent-color); font-weight: 600; margin-bottom: 25px; min-height: 20px; }
+        
+        .plan-features { list-style: none; margin-bottom: 35px; text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .plan-features li { margin-bottom: 12px; font-size: 15px; color: var(--text-muted); display: flex; align-items: center; }
+        .plan-features li::before { content: "✓"; color: var(--primary-color); font-weight: bold; margin-right: 10px; font-size: 16px; }
+        
+        /* Bottone in stile PayPal */
+        .pay-btn {
+            width: 100%; padding: 14px; background-color: var(--paypal-color);
+            border: none; border-radius: 30px; color: #003087; font-size: 16px;
+            font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 8px; transition: background-color 0.3s, transform 0.1s;
+        }
+        .pay-btn:hover { background-color: #f4b41a; transform: scale(1.02); }
+        .pay-btn img { height: 20px; }
+
+        /* FOOTER */
+        footer {
+            background-color: #022c22; color: white; padding: 60px 5% 20px 5%; border-top: 3px solid #064e3b;
+        }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-info h2 { font-size: 28px; color: var(--primary-color); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 10px; font-size: 16px; color: var(--text-muted); }
+        .map-box { flex: 1; min-width: 300px; }
+        .map-box iframe { width: 100%; height: 300px; border: none; border-radius: 12px; opacity: 0.9; }
+        .orbis-credit { text-align: center; padding-top: 20px; border-top: 1px solid #064e3b; font-size: 13px; color: #888; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 5%; text-align: center; }
+            .logo { margin-bottom: 15px; font-size: 24px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav a { margin-left: 0; font-size: 13px; }
+            .hero { padding: 40px 5%; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 18px; margin-bottom: 30px; }
+            .hero-image { height: 250px; }
+            .section-title { font-size: 30px; margin-bottom: 30px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .contact-info, .map-box { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MICHELANGELO <span>SPORT</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="palestra.html" class="active">Palestra</a>
+            <a href="padel.html">Padel</a>
+            <a href="piscina.html">Piscina</a>
+            <a href="calcio.html">Calcio</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Area Fitness & Bodybuilding</h1>
+        <p>Spazi ampi, attrezzature biomeccaniche d'avanguardia e i migliori trainer al tuo servizio.</p>
+        <img src="img/palestra-principale.jpg" alt="Palestra Centro Sportivo" class="hero-image">
+    </section>
+
+    <section class="gym-details">
+        <h2 class="section-title">Il Nostro Club</h2>
+        <div class="grid-container">
+            
+            <div class="detail-card">
+                <div class="icon">💪</div>
+                <h3>Sala Pesi & Isotonica</h3>
+                <p>Oltre 600 mq equipaggiati con i migliori macchinari per l'allenamento della forza. Area manubri fino a 50kg, rack multipli per squat e pedane olimpiche per il powerlifting in totale sicurezza.</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="icon">🏃‍♀️</div>
+                <h3>Cardio Fitness</h3>
+                <p>Tapis roulant, bike, ellittiche e climber connessi alla rete. Monitora i tuoi parametri vitali, guarda le tue serie preferite o naviga mentre bruci calorie in un ambiente perfettamente climatizzato.</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="icon">🔥</div>
+                <h3>Corsi Musicali</h3>
+                <p>Un palinsesto completo con più di 40 ore settimanali di lezioni di gruppo: Functional Training, Pilates, Yoga, Spinning e Cross-Training guidati da professionisti dell'energia.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <h2 class="section-title">Iscriviti Online</h2>
+        <div class="pricing-grid">
+            
+            <div class="price-card">
+                <div class="plan-name">Mensile Open</div>
+                <div class="plan-price">55€<span> / mese</span></div>
+                <div class="plan-savings">Nessun vincolo di rinnovo</div>
+                <ul class="plan-features">
+                    <li>Accesso illimitato sala pesi e cardio</li>
+                    <li>Inclusi spogliatoi e docce calde</li>
+                    <li>Scheda d'allenamento iniziale</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa MENSILE (55.00€).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
+
+            <div class="price-card featured">
+                <div class="badge">Più Conveniente</div>
+                <div class="plan-name">Annuale Open</div>
+                <div class="plan-price">39€<span> / mese</span></div>
+                <div class="plan-savings">Risparmi 192€ all'anno</div>
+                <ul class="plan-features">
+                    <li>Tutti i vantaggi del mensile</li>
+                    <li>Accesso a tutti i Corsi di Gruppo</li>
+                    <li>2 Sessioni con Personal Trainer</li>
+                    <li>Blocco abbonamento fino a 30 giorni</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa ANNUALE (468.00€ in soluzione unica).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
+
+            <div class="price-card">
+                <div class="plan-name">Trimestrale Open</div>
+                <div class="plan-price">48€<span> / mese</span></div>
+                <div class="plan-savings">Risparmi 21€ sul trimestre</div>
+                <ul class="plan-features">
+                    <li>Tutti i vantaggi del mensile</li>
+                    <li>Accesso a 2 corsi musicali a scelta</li>
+                    <li>Rinnovo flessibile ogni 90 giorni</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa TRIMESTRALE (144.00€).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h2>Vieni a trovarci</h2>
+                <p>📍 Indirizzo: Piazzale Michelangelo, 50125 Firenze (FI)</p>
+                <p>📞 Telefono: +39 055 1234567</p>
+                <p>✉️ Email: info@michelangelosport.it</p>
+                <br>
+                <p><strong>Orari di apertura:</strong></p>
+                <p>Lunedì - Sabato: 06:30 - 23:00</p>
+                <p>Domenica: 08:00 - 20:00</p>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.564478144087!2d11.262529815494236!3d43.76295597911762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a54054a3dc4fb%3A0xb3fc4902dcfe8650!2sPiazzale%20Michelangelo!5e0!3m2!1sit!2sit!4v1689255000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="orbis-credit">
+            © 2026 Michelangelo Sport. Tutti i diritti riservati.<br>
+            Progettato in puro codice da The Orbis Project
+        </div>
+    </footer>
+
+</body>
+</html>
