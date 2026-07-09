@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro Sportivo Michelangelo | L'Energia prende Forma</title>
     <style>
-        /* === VARIABILI E RESET (Nuovo Tema Sportivo Dark) === */
+        /* === VARIABILI E RESET (Nuovo Tema Natura e Vitalità) === */
         :root {
-            --primary-color: #ff5722; /* Arancione sportivo ed energico */
-            --accent-color: #00d2ff; /* Azzurro neon per i dettagli */
-            --dark-bg: #121518; /* Sfondo scuro principale */
-            --card-bg: #1e2227; /* Sfondo delle schede */
-            --text-light: #f1f1f1; /* Testo chiaro principale */
-            --text-muted: #aaaaaa; /* Testo secondario */
+            --primary-color: #4ade80; /* Verde prato luminoso ed energico */
+            --accent-color: #facc15; /* Giallo sole per i dettagli e i contrasti */
+            --dark-bg: #064e3b; /* Verde foresta profondo per lo sfondo principale */
+            --card-bg: #047857; /* Verde smeraldo per le schede dei servizi */
+            --text-light: #ffffff; /* Testo bianco puro per massima leggibilità */
+            --text-muted: #d1fae5; /* Verde chiarissimo per i testi secondari */
         }
         
         * {
@@ -23,7 +23,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1e24 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
             color: var(--text-light);
             line-height: 1.6;
         }
@@ -35,7 +35,7 @@
 
         /* === BARRA DI NAVIGAZIONE === */
         header {
-            background-color: rgba(18, 21, 24, 0.95);
+            background-color: rgba(2, 44, 34, 0.95);
             color: white;
             padding: 20px 5%;
             display: flex;
@@ -44,7 +44,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
         }
 
         .logo {
@@ -76,30 +76,33 @@
             text-align: center;
         }
 
+        /* Testi ingranditi come richiesto */
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 64px; /* Ingrandito da 48px a 64px per maggiore impatto */
+            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
             background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 26px; /* Ingrandito da 20px a 26px */
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            font-weight: 500;
         }
 
-        /* L'immagine Hero sostituita al posto del riquadro vuoto */
+        /* L'immagine Hero */
         .hero-image {
             width: 100%;
             height: 500px;
-            object-fit: cover; /* Taglia la foto in modo perfetto senza schiacciarla */
+            object-fit: cover; 
             border-radius: 12px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
+            border: 2px solid var(--primary-color);
         }
 
         /* === SEZIONE SERVIZI (I COLLEGAMENTI ALLE ALTRE PAGINE) === */
@@ -109,7 +112,7 @@
 
         .section-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 40px;
             margin-bottom: 50px;
             color: white;
             text-transform: uppercase;
@@ -134,8 +137,8 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 87, 34, 0.2);
-            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(74, 222, 128, 0.3);
+            border-color: var(--accent-color);
         }
 
         /* Le immagini dei servizi inserite */
@@ -144,7 +147,7 @@
             height: 250px;
             object-fit: cover;
             display: block;
-            border-bottom: 3px solid var(--accent-color);
+            border-bottom: 4px solid var(--accent-color);
         }
 
         .card-content {
@@ -153,22 +156,22 @@
         }
 
         .card-content h3 {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 10px;
             color: white;
         }
 
         .card-content p {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--text-muted);
         }
 
         /* === FOOTER E CONTATTI === */
         footer {
-            background-color: #0b0d0f;
+            background-color: #022c22;
             color: white;
             padding: 60px 5% 20px 5%;
-            border-top: 2px solid #333;
+            border-top: 3px solid #064e3b;
         }
 
         .footer-content {
@@ -207,7 +210,7 @@
             height: 300px;
             border: none;
             border-radius: 12px;
-            opacity: 0.8;
+            opacity: 0.9;
             transition: opacity 0.3s;
         }
 
@@ -218,9 +221,9 @@
         .orbis-credit {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid #064e3b;
             font-size: 13px;
-            color: #666;
+            color: #888;
         }
     </style>
 </head>
