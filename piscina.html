@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piscina Olimpionica | Centro Sportivo Michelangelo</title>
+    <style>
+        /* === INTESTAZIONE E STILE IDENTICI ALLA HOME === */
+        :root {
+            --primary-color: #4ade80; 
+            --accent-color: #facc15; 
+            --dark-bg: #064e3b; 
+            --card-bg: #047857; 
+            --text-light: #ffffff; 
+            --text-muted: #d1fae5; 
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER E NAVIGAZIONE */
+        header {
+            background-color: rgba(2, 44, 34, 0.95);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--primary-color); }
+
+        nav a {
+            color: white; margin-left: 25px; font-weight: 600;
+            font-size: 15px; text-transform: uppercase; transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-color); }
+        
+        /* Il link della pagina corrente si illumina */
+        nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+
+        /* HERO SECTION DELLA PISCINA */
+        .hero { padding: 80px 5%; text-align: center; }
+        
+        .hero h1 {
+            font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
+            background: -webkit-linear-gradient(45deg, #00d2ff, #3a7bd5); /* Colori sfumati blu acqua */
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
+        
+        .hero-image {
+            width: 100%; height: 400px; object-fit: cover; border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid #3a7bd5;
+        }
+
+        /* DETTAGLIO SERVIZI PISCINA */
+        .pool-details { padding: 80px 5%; }
+        .section-title { text-align: center; font-size: 40px; margin-bottom: 50px; text-transform: uppercase; }
+        
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg); padding: 40px 30px; border-radius: 12px;
+            text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-top: 4px solid var(--accent-color);
+        }
+        .info-card h3 { font-size: 26px; margin-bottom: 15px; color: white; }
+        .info-card p { font-size: 16px; color: var(--text-muted); }
+        .info-card .icon { font-size: 50px; margin-bottom: 20px; }
+
+        /* FOOTER */
+        footer {
+            background-color: #022c22; color: white; padding: 60px 5% 20px 5%; border-top: 3px solid #064e3b;
+        }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-info h2 { font-size: 28px; color: var(--primary-color); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 10px; font-size: 16px; color: var(--text-muted); }
+        .map-box { flex: 1; min-width: 300px; }
+        .map-box iframe { width: 100%; height: 300px; border: none; border-radius: 12px; opacity: 0.9; }
+        .orbis-credit { text-align: center; padding-top: 20px; border-top: 1px solid #064e3b; font-size: 13px; color: #888; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 5%; text-align: center; }
+            .logo { margin-bottom: 15px; font-size: 24px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav a { margin-left: 0; font-size: 13px; }
+            .hero { padding: 40px 5%; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 18px; margin-bottom: 30px; }
+            .hero-image { height: 250px; }
+            .section-title { font-size: 30px; margin-bottom: 30px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .contact-info, .map-box { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE -->
+    <header>
+        <div class="logo">MICHELANGELO <span>SPORT</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="palestra.html">Palestra</a>
+            <a href="padel.html">Padel</a>
+            <a href="piscina.html" class="active">Piscina</a>
+            <a href="calcio.html">Calcio</a>
+        </nav>
+    </header>
+
+    <!-- SEZIONE HERO PISCINA -->
+    <section class="hero">
+        <h1>L'Acqua è il tuo Elemento.</h1>
+        <p>Due vasche all'avanguardia per allenamento agonistico, fitness in acqua e puro relax.</p>
+        <!-- Utilizziamo l'immagine della piscina che avevi già caricato su GitHub -->
+        <img src="img/piscina.jpg" alt="Piscina Centro Sportivo" class="hero-image">
+    </section>
+
+    <!-- DETTAGLI DELLE ATTIVITA' -->
+    <section class="pool-details">
+        <h2 class="section-title">I Nostri Corsi e Spazi</h2>
+        <div class="grid-container">
+            
+            <div class="info-card">
+                <div class="icon">🏊‍♂️</div>
+                <h3>Vasca Olimpionica</h3>
+                <p>La vasca principale da 50 metri è dedicata al nuoto libero e agli allenamenti agonistici. Corsie riservate per diverse velocità, con acqua a temperatura controllata e sistema di purificazione a sale.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon">🌊</div>
+                <h3>Acquagym e Idrobike</h3>
+                <p>Sfruttiamo la vasca secondaria con fondale basso per i corsi di fitness musicale in acqua. Ideale per tonificare il corpo senza sovraccaricare le articolazioni. Lezioni disponibili tutti i giorni.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon">👶</div>
+                <h3>Scuola Nuoto Kids</h3>
+                <p>La piscina adiacente è il luogo perfetto e sicuro per far prendere confidenza ai più piccoli con l'acqua. Istruttori qualificati FIN accompagnano i bambini dai 3 ai 12 anni in un percorso di crescita e divertimento.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon">☀️</div>
+                <h3>Solarium a bordo vasca</h3>
+                <p>Dopo l'allenamento, concediti una pausa. L'ampia gradinata laterale ospita una zona solarium attrezzata con lettini e ombrelloni, per rilassarti sotto il sole con vista panoramica sul centro.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER IDENTICO ALLA HOME -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h2>Vieni a trovarci</h2>
+                <p>📍 Indirizzo: Piazzale Michelangelo, 50125 Firenze (FI)</p>
+                <p>📞 Telefono: +39 055 1234567</p>
+                <p>✉️ Email: info@michelangelosport.it</p>
+                <br>
+                <p><strong>Orari di apertura:</strong></p>
+                <p>Lunedì - Sabato: 06:30 - 23:00</p>
+                <p>Domenica: 08:00 - 20:00</p>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.564478144087!2d11.262529815494236!3d43.76295597911762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a54054a3dc4fb%3A0xb3fc4902dcfe8650!2sPiazzale%20Michelangelo!5e0!3m2!1sit!2sit!4v1689255000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="orbis-credit">
+            © 2026 Michelangelo Sport. Tutti i diritti riservati.<br>
+            Progettato in puro codice da The Orbis Project
+        </div>
+    </footer>
+
+</body>
+</html>
