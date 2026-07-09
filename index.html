@@ -26,6 +26,7 @@
             background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
             color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden; /* Evita qualsiasi scorrimento laterale indesiderato */
         }
 
         a {
@@ -76,9 +77,8 @@
             text-align: center;
         }
 
-        /* Testi ingranditi come richiesto */
         .hero h1 {
-            font-size: 64px; /* Ingrandito da 48px a 64px per maggiore impatto */
+            font-size: 64px; 
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -89,13 +89,12 @@
         }
 
         .hero p {
-            font-size: 26px; /* Ingrandito da 20px a 26px */
+            font-size: 26px; 
             color: var(--text-muted);
             margin-bottom: 50px;
             font-weight: 500;
         }
 
-        /* L'immagine Hero */
         .hero-image {
             width: 100%;
             height: 500px;
@@ -105,7 +104,7 @@
             border: 2px solid var(--primary-color);
         }
 
-        /* === SEZIONE SERVIZI (I COLLEGAMENTI ALLE ALTRE PAGINE) === */
+        /* === SEZIONE SERVIZI === */
         .services-section {
             padding: 80px 5%;
         }
@@ -124,7 +123,6 @@
             gap: 40px;
         }
 
-        /* Struttura della singola card interattiva */
         .service-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -141,7 +139,6 @@
             border-color: var(--accent-color);
         }
 
-        /* Le immagini dei servizi inserite */
         .card-image {
             width: 100%;
             height: 250px;
@@ -204,7 +201,6 @@
             min-width: 300px;
         }
 
-        /* Riquadro della mappa standard */
         .map-box iframe {
             width: 100%;
             height: 300px;
@@ -224,6 +220,71 @@
             border-top: 1px solid #064e3b;
             font-size: 13px;
             color: #888;
+        }
+
+        /* =========================================================
+           ADATTAMENTO PER CELLULARI (Media Queries) 
+           Tutto quello che c'è qui dentro si attiva SOLO sui telefoni
+           ========================================================= */
+        @media (max-width: 768px) {
+            /* Mette il menù e il logo in colonna invece che affiancati */
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                font-size: 24px;
+            }
+
+            /* Allinea i link del menù affiancati e ordinati */
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 0;
+                font-size: 13px;
+            }
+
+            /* Riduce gli spazi e la grandezza dei testi enormi */
+            .hero {
+                padding: 40px 5%;
+            }
+
+            .hero h1 {
+                font-size: 34px; /* Rimpicciolito per il telefono */
+            }
+
+            .hero p {
+                font-size: 18px; /* Rimpicciolito per il telefono */
+                margin-bottom: 30px;
+            }
+
+            /* Rende l'immagine principale meno alta per non occupare tutto lo schermo */
+            .hero-image {
+                height: 250px;
+            }
+
+            .section-title {
+                font-size: 30px;
+                margin-bottom: 30px;
+            }
+
+            /* Centra i testi dei contatti nel footer */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info, .map-box {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
