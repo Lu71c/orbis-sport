@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campi da Padel | Centro Sportivo Michelangelo</title>
+    <style>
+        /* === INTESTAZIONE E STILE IDENTICI ALLA HOME === */
+        :root {
+            --primary-color: #4ade80; 
+            --accent-color: #facc15; 
+            --dark-bg: #064e3b; 
+            --card-bg: #047857; 
+            --text-light: #ffffff; 
+            --text-muted: #d1fae5; 
+            --slot-available: #22c55e;
+            --slot-booked: #ef4444;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER E NAVIGAZIONE */
+        header {
+            background-color: rgba(2, 44, 34, 0.95);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--primary-color); }
+
+        nav a {
+            color: white; margin-left: 25px; font-weight: 600;
+            font-size: 15px; text-transform: uppercase; transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-color); }
+        nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+
+        /* HERO SECTION PADEL */
+        .hero { padding: 80px 5%; text-align: center; }
+        
+        .hero h1 {
+            font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
+            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
+        
+        .hero-image {
+            width: 100%; height: 400px; object-fit: cover; border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-color);
+        }
+
+        /* SEZIONE CALENDARIO INTERATTIVO (MOCKUP) */
+        .booking-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
+        .section-title { text-align: center; font-size: 40px; margin-bottom: 20px; text-transform: uppercase; }
+        .section-subtitle { text-align: center; font-size: 18px; color: var(--text-muted); margin-bottom: 50px; }
+        
+        .calendar-container {
+            max-width: 900px; margin: 0 auto; background-color: var(--card-bg);
+            border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .calendar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 15px;
+        }
+        .calendar-header h3 { font-size: 24px; color: var(--accent-color); }
+        
+        .slots-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;
+        }
+        
+        .slot-card {
+            background-color: rgba(2, 44, 34, 0.6); padding: 20px; border-radius: 8px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+        .slot-card:hover { transform: scale(1.05); border-color: var(--primary-color); }
+        
+        .slot-time { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        
+        .slot-status {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+        }
+        .status-available { background-color: var(--slot-available); color: white; }
+        .status-booked { background-color: var(--slot-booked); color: white; }
+
+        /* SEZIONE MAESTRI PADEL */
+        .coaches-section { padding: 80px 5%; }
+        
+        .coaches-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px;
+        }
+        
+        .coach-card {
+            background-color: var(--card-bg); border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); text-align: center;
+            border-bottom: 4px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+        .coach-card:hover { transform: translateY(-5px); }
+        
+        .coach-avatar-box {
+            width: 100%; height: 200px; background-color: rgba(2, 44, 34, 0.8);
+            display: flex; align-items: center; justify-content: center; font-size: 70px;
+        }
+        
+        .coach-info { padding: 25px; }
+        .coach-info h4 { font-size: 22px; margin-bottom: 5px; color: white; }
+        .coach-info .role { font-size: 14px; color: var(--accent-color); font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
+        .coach-info p { font-size: 15px; color: var(--text-muted); }
+
+        /* FOOTER */
+        footer {
+            background-color: #022c22; color: white; padding: 60px 5% 20px 5%; border-top: 3px solid #064e3b;
+        }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-info h2 { font-size: 28px; color: var(--primary-color); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 10px; font-size: 16px; color: var(--text-muted); }
+        .map-box { flex: 1; min-width: 300px; }
+        .map-box iframe { width: 100%; height: 300px; border: none; border-radius: 12px; opacity: 0.9; }
+        .orbis-credit { text-align: center; padding-top: 20px; border-top: 1px solid #064e3b; font-size: 13px; color: #888; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 5%; text-align: center; }
+            .logo { margin-bottom: 15px; font-size: 24px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav a { margin-left: 0; font-size: 13px; }
+            .hero { padding: 40px 5%; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 18px; margin-bottom: 30px; }
+            .hero-image { height: 250px; }
+            .section-title { font-size: 30px; margin-bottom: 20px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .contact-info, .map-box { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MICHELANGELO <span>SPORT</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="palestra.html">Palestra</a>
+            <a href="padel.html" class="active">Padel</a>
+            <a href="piscina.html">Piscina</a>
+            <a href="calcio.html">Calcio</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>I Nostri Campi da Padel</h1>
+        <p>Strutture panoramiche di ultima generazione, vetri stratificati e manto ufficiale del circuito mondiale.</p>
+        <img src="img/padel-principale.jpg" alt="Campi da Padel" class="hero-image">
+    </section>
+
+    <section class="booking-section">
+        <h2 class="section-title">Prenota un Campo</h2>
+        <p class="section-subtitle">Seleziona lo slot orario per sfidare i tuoi amici (Esempio interfaccia live cliente)</p>
+        
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h3>📅 Oggi: Giovedì 9 Luglio</h3>
+                <span style="font-weight: 600; color: var(--primary-color);">Disponibilità in tempo reale</span>
+            </div>
+            
+            <div class="slots-grid">
+                <div class="slot-card">
+                    <div class="slot-time">09:00</div>
+                    <span class="slot-status status-booked">Occupato</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">10:30</div>
+                    <span class="slot-status status-available">Libero</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">12:00</div>
+                    <span class="slot-status status-available">Libero</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">15:30</div>
+                    <span class="slot-status status-booked">Occupato</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">17:00</div>
+                    <span class="slot-status status-available">Libero</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">18:30</div>
+                    <span class="slot-status status-booked">Occupato</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">20:00</div>
+                    <span class="slot-status status-booked">Occupato</span>
+                </div>
+                <div class="slot-card">
+                    <div class="slot-time">21:30</div>
+                    <span class="slot-status status-available">Libero</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="coaches-section">
+        <h2 class="section-title">Lo Staff Tecnico</h2>
+        <p style="text-align: center; color: var(--text-muted); font-size: 18px;">Istruttori federali qualificati per lezioni singole, di coppia o clinic intensive.</p>
+        
+        <div class="coaches-grid">
+            
+            <div class="coach-card">
+                <div class="coach-avatar-box">🥇</div>
+                <div class="coach-info">
+                    <h4>Marco "Il Muro" Rossi</h4>
+                    <div class="role">Head Coach - FITP Liv. 2</div>
+                    <p>Specialista assoluto della fase difensiva e del controllo di parete. Ti insegnerà il segreto per una bandeja millimetrica.</p>
+                </div>
+            </div>
+
+            <div class="coach-card">
+                <div class="coach-avatar-box">🎾</div>
+                <div class="coach-info">
+                    <h4>Elena "La Saetta" Bianchi</h4>
+                    <div class="role">Istruttrice Agonistica</div>
+                    <p>Ex giocatrice professionista nel circuito nazionale. Esperta in tattica avanzata di gioco e posizionamento di coppia.</p>
+                </div>
+            </div>
+
+            <div class="coach-card">
+                <div class="coach-avatar-box">⚡</div>
+                <div class="coach-info">
+                    <h4>Alessandro "Vibora" Verdi</h4>
+                    <div class="role">Preparatore Atletico</div>
+                    <p>Cura la coordinazione e l'esplosività muscolare specifica per il Padel. Il re indiscusso dei colpi d'attacco ad effetto.</p>
+                </div>
+            </div>
+
+            <div class="coach-card">
+                <div class="coach-avatar-box">🎓</div>
+                <div class="coach-info">
+                    <h4>Giulia "Smash" Neri</h4>
+                    <div class="role">Responsabile Scuola Kids</div>
+                    <p>Dedicata ai corsi di avviamento per principianti e alle clinic intensive per ragazzi dai 6 ai 16 anni. Metodo dinamico.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h2>Vieni a trovarci</h2>
+                <p>📍 Indirizzo: Piazzale Michelangelo, 50125 Firenze (FI)</p>
+                <p>📞 Telefono: +39 055 1234567</p>
+                <p>✉️ Email: info@michelangelosport.it</p>
+                <br>
+                <p><strong>Orari di apertura:</strong></p>
+                <p>Lunedì - Sabato: 06:30 - 23:00</p>
+                <p>Domenica: 08:00 - 20:00</p>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.564478144087!2d11.262529815494236!3d43.76295597911762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a54054a3dc4fb%3A0xb3fc4902dcfe8650!2sPiazzale%20Michelangelo!5e0!3m2!1sit!2sit!4v1689255000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="orbis-credit">
+            © 2026 Michelangelo Sport. Tutti i diritti riservati.<br>
+            Progettato in puro codice da The Orbis Project
+        </div>
+    </footer>
+
+</body>
+</html>
