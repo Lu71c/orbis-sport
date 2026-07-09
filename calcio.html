@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campi da Calcio | Centro Sportivo Michelangelo</title>
+    <style>
+        /* === INTESTAZIONE E STILE IDENTICI ALLA HOME === */
+        :root {
+            --primary-color: #4ade80; 
+            --accent-color: #facc15; 
+            --dark-bg: #064e3b; 
+            --card-bg: #047857; 
+            --text-light: #ffffff; 
+            --text-muted: #d1fae5; 
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #022c22 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER E NAVIGAZIONE */
+        header {
+            background-color: rgba(2, 44, 34, 0.95);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--primary-color); }
+
+        nav a {
+            color: white; margin-left: 25px; font-weight: 600;
+            font-size: 15px; text-transform: uppercase; transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-color); }
+        nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+
+        /* HERO SECTION CALCIO */
+        .hero { padding: 80px 5%; text-align: center; }
+        
+        .hero h1 {
+            font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
+            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
+        
+        .hero-image {
+            width: 100%; height: 400px; object-fit: cover; border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-color);
+        }
+
+        /* SEZIONE OPZIONI CAMPI */
+        .fields-section { padding: 80px 5%; }
+        .section-title { text-align: center; font-size: 40px; margin-bottom: 50px; text-transform: uppercase; }
+        
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;
+        }
+
+        .field-card {
+            background-color: var(--card-bg); padding: 40px 30px; border-radius: 12px;
+            text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-top: 4px solid var(--primary-color);
+        }
+        .field-card h3 { font-size: 26px; margin-bottom: 15px; color: white; }
+        .field-card p { font-size: 16px; color: var(--text-muted); }
+        .field-card .icon { font-size: 50px; margin-bottom: 20px; }
+
+        /* SEZIONE FORM TORNEI */
+        .tournament-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
+        .form-container {
+            max-width: 650px; margin: 0 auto; background-color: var(--card-bg);
+            border-radius: 12px; padding: 40px; box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .form-container h3 { font-size: 28px; text-align: center; margin-bottom: 10px; color: var(--accent-color); text-transform: uppercase; }
+        .form-container p { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Stile degli input dentro il form */
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px 15px; background-color: rgba(2, 44, 34, 0.6);
+            border: 2px solid rgba(255,255,255,0.1); border-radius: 6px;
+            color: white; font-size: 16px; font-family: inherit; transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary-color);
+        }
+        
+        /* Opzioni del menu a tendina scure */
+        .form-group select option { background-color: #047857; color: white; }
+        
+        .submit-btn {
+            width: 100%; padding: 15px; background-color: var(--primary-color);
+            border: none; border-radius: 6px; color: #022c22; font-size: 18px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: background-color 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+        .submit-btn:hover { background-color: #22c55e; transform: translateY(-2px); }
+
+        /* FOOTER */
+        footer {
+            background-color: #022c22; color: white; padding: 60px 5% 20px 5%; border-top: 3px solid #064e3b;
+        }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-info h2 { font-size: 28px; color: var(--primary-color); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 10px; font-size: 16px; color: var(--text-muted); }
+        .map-box { flex: 1; min-width: 300px; }
+        .map-box iframe { width: 100%; height: 300px; border: none; border-radius: 12px; opacity: 0.9; }
+        .orbis-credit { text-align: center; padding-top: 20px; border-top: 1px solid #064e3b; font-size: 13px; color: #888; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 5%; text-align: center; }
+            .logo { margin-bottom: 15px; font-size: 24px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav a { margin-left: 0; font-size: 13px; }
+            .hero { padding: 40px 5%; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 18px; margin-bottom: 30px; }
+            .hero-image { height: 250px; }
+            .section-title { font-size: 30px; margin-bottom: 30px; }
+            .form-container { padding: 25px 20px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .contact-info, .map-box { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MICHELANGELO <span>SPORT</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="palestra.html">Palestra</a>
+            <a href="padel.html">Padel</a>
+            <a href="piscina.html">Piscina</a>
+            <a href="calcio.html" class="active">Calcio</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Il Grande Calcio a Firenze</h1>
+        <p>Manti erbosi di ultimissima generazione, illuminazione LED notturna ed eventi spettacolari.</p>
+        <img src="img/calcio-principale.jpg" alt="Campi da Calcio Michelangelo" class="hero-image">
+    </section>
+
+    <section class="fields-section">
+        <h2 class="section-title">Le Nostre Strutture</h2>
+        <div class="grid-container">
+            
+            <div class="field-card">
+                <div class="icon">👟</div>
+                <h3>Calcio a 5</h3>
+                <p>Tre campi coperti e scoperti in erba sintetica ad altissimo assorbimento degli urti. Ideali per partite veloci tra amici, tornei aziendali e allenamenti invernali al riparo dalle intemperie.</p>
+            </div>
+
+            <div class="field-card">
+                <div class="icon">🏃‍♂️</div>
+                <h3>Calcio a 8</h3>
+                <p>Due campi regolamentari ad ampi spazi con recinzioni a bordo campo ammortizzate. Il perfetto compromesso tra la tattica del grande calcio e il dinamismo dello stretto. Manto drenante perfetto anche sotto la pioggia.</p>
+            </div>
+
+            <div class="field-card">
+                <div class="icon">⚽</div>
+                <h3>Calcio a 11</h3>
+                <p>Il nostro fiore all'occhiello: un campo principale in erba naturale curato quotidianamente da giardinieri professionisti. Dotato di tribune spettatori, spogliatoi dedicati e panchine coperte.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="tournament-section">
+        <div class="form-container">
+            <h3>Iscrivi la tua Squadra</h3>
+            <p>Compila il modulo sottostante per riservare il tuo posto nei prossimi tornei estivi di Calcio a 5 e Calcio a 8.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Iscrizione inviata con successo! (Simulazione Orbis Project)');">
+                <div class="form-group">
+                    <label for="team-name">Nome della Squadra</label>
+                    <input type="text" id="team-name" placeholder="Es. Atletico Ma Non Troppo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="captain">Nome del Capitano / Referente</label>
+                    <input type="text" id="captain" placeholder="Nome e Cognome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Numero di Telefono</label>
+                    <input type="tel" id="phone" placeholder="Es. +39 333 1234567" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Indirizzo Email</label>
+                    <input type="email" id="email" placeholder="Es. capitano@email.it" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tournament-type">Seleziona il Torneo</label>
+                    <select id="tournament-type" required>
+                        <option value="" disabled selected>Scegli una competizione...</option>
+                        <option value="c5">Torneo Estivo Calcio a 5 (Inizio 15 Luglio)</option>
+                        <option value="c8">Campionato Apertura Calcio a 8 (Inizio 20 Luglio)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Note o Richieste Particolari</label>
+                    <textarea id="notes" rows="4" placeholder="Es. Preferenze orari partite o richieste maglie..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Invia Iscrizione</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h2>Vieni a trovarci</h2>
+                <p>📍 Indirizzo: Piazzale Michelangelo, 50125 Firenze (FI)</p>
+                <p>📞 Telefono: +39 055 1234567</p>
+                <p>✉️ Email: info@michelangelosport.it</p>
+                <br>
+                <p><strong>Orari di apertura:</strong></p>
+                <p>Lunedì - Sabato: 06:30 - 23:00</p>
+                <p>Domenica: 08:00 - 20:00</p>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.564478144087!2d11.262529815494236!3d43.76295597911762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a54054a3dc4fb%3A0xb3fc4902dcfe8650!2sPiazzale%20Michelangelo!5e0!3m2!1sit!2sit!4v1689255000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="orbis-credit">
+            © 2026 Michelangelo Sport. Tutti i diritti riservati.<br>
+            Progettato in puro codice da The Orbis Project
+        </div>
+    </footer>
+
+</body>
+</html>
