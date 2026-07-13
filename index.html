@@ -82,10 +82,11 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            /* Modifica: Gradiente premium da bianco puro a grigio argento */
+            background: -webkit-linear-gradient(45deg, #ffffff, #e2e8f0, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
         }
 
         .hero p {
@@ -224,10 +225,8 @@
 
         /* =========================================================
            ADATTAMENTO PER CELLULARI (Media Queries) 
-           Tutto quello che c'è qui dentro si attiva SOLO sui telefoni
            ========================================================= */
         @media (max-width: 768px) {
-            /* Mette il menù e il logo in colonna invece che affiancati */
             header {
                 flex-direction: column;
                 padding: 15px 5%;
@@ -239,7 +238,6 @@
                 font-size: 24px;
             }
 
-            /* Allinea i link del menù affiancati e ordinati */
             nav {
                 display: flex;
                 flex-wrap: wrap;
@@ -252,21 +250,19 @@
                 font-size: 13px;
             }
 
-            /* Riduce gli spazi e la grandezza dei testi enormi */
             .hero {
                 padding: 40px 5%;
             }
 
             .hero h1 {
-                font-size: 34px; /* Rimpicciolito per il telefono */
+                font-size: 34px;
             }
 
             .hero p {
-                font-size: 18px; /* Rimpicciolito per il telefono */
+                font-size: 18px;
                 margin-bottom: 30px;
             }
 
-            /* Rende l'immagine principale meno alta per non occupare tutto lo schermo */
             .hero-image {
                 height: 250px;
             }
@@ -276,7 +272,6 @@
                 margin-bottom: 30px;
             }
 
-            /* Centra i testi dei contatti nel footer */
             .footer-content {
                 flex-direction: column;
                 text-align: center;
@@ -338,7 +333,7 @@
             <a href="calcio.html" class="service-card">
                 <img src="img/calcio.jpg" alt="Campi da Calcio" class="card-image">
                 <div class="card-content">
-                    <h3>Calcio a 5 e a 8</h3>
+                    <h3>Calcio a 5, 8 e 11</h3>
                     <p>Manti in erba sintetica di ultima generazione. Prenota il tuo campo.</p>
                 </div>
             </a>
