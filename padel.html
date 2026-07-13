@@ -58,9 +58,10 @@
         
         .hero h1 {
             font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
-            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            /* Nuova sfumatura chiara: Giallo -> Arancione -> Rosso Corallo */
+            background: -webkit-linear-gradient(45deg, #fde047, #fb923c, #f87171);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
         
@@ -69,7 +70,7 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-color);
         }
 
-        /* SEZIONE CALENDARIO INTERATTIVO (MOCKUP) */
+        /* SEZIONE CALENDARIO INTERATTIVO */
         .booking-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
         .section-title { text-align: center; font-size: 40px; margin-bottom: 20px; text-transform: uppercase; }
         .section-subtitle { text-align: center; font-size: 18px; color: var(--text-muted); margin-bottom: 50px; }
@@ -93,9 +94,12 @@
             background-color: rgba(2, 44, 34, 0.6); padding: 20px; border-radius: 8px;
             text-align: center; border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.2s, border-color 0.2s;
-            cursor: pointer;
         }
-        .slot-card:hover { transform: scale(1.05); border-color: var(--primary-color); }
+        
+        /* Regole diverse tra Libero (cliccabile) e Occupato (spento) */
+        .slot-card.available { cursor: pointer; }
+        .slot-card.available:hover { transform: scale(1.05); border-color: var(--primary-color); }
+        .slot-card.booked { cursor: not-allowed; opacity: 0.6; }
         
         .slot-time { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
         
@@ -105,6 +109,38 @@
         }
         .status-available { background-color: var(--slot-available); color: white; }
         .status-booked { background-color: var(--slot-booked); color: white; }
+
+        /* MODALE (FINESTRA A SCOMPARSA PER I MAESTRI) */
+        .modal-overlay {
+            display: none; /* Nascosta di default */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); z-index: 2000;
+            justify-content: center; align-items: center; backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: var(--card-bg); padding: 40px; border-radius: 12px;
+            text-align: center; border: 2px solid var(--accent-color);
+            max-width: 450px; width: 90%; position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 28px;
+            color: white; cursor: pointer; transition: color 0.3s;
+        }
+        .close-modal:hover { color: var(--primary-color); }
+        .modal-content h3 { color: white; font-size: 24px; margin-bottom: 10px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        
+        .coach-buttons { display: flex; flex-direction: column; gap: 12px; }
+        .coach-btn {
+            padding: 15px; background-color: rgba(2, 44, 34, 0.8);
+            border: 1px solid var(--primary-color); color: white;
+            border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 600;
+            transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .coach-btn:hover {
+            background-color: var(--primary-color); color: #022c22; transform: translateY(-2px);
+        }
 
         /* SEZIONE MAESTRI PADEL */
         .coaches-section { padding: 80px 5%; }
@@ -178,46 +214,50 @@
         <img src="img/padel-principale.jpg" alt="Campi da Padel" class="hero-image">
     </section>
 
+    <!-- CALENDARIO INTERATTIVO -->
     <section class="booking-section">
         <h2 class="section-title">Prenota un Campo</h2>
-        <p class="section-subtitle">Seleziona lo slot orario per sfidare i tuoi amici (Esempio interfaccia live cliente)</p>
+        <p class="section-subtitle">Seleziona lo slot orario per sfidare i tuoi amici (Integrazione diretta WhatsApp)</p>
         
         <div class="calendar-container">
             <div class="calendar-header">
-                <h3>📅 Oggi: Giovedì 9 Luglio</h3>
+                <!-- Data dinamica iniettata tramite JavaScript -->
+                <h3 id="data-odierna">📅 Oggi: Caricamento...</h3>
                 <span style="font-weight: 600; color: var(--primary-color);">Disponibilità in tempo reale</span>
             </div>
             
             <div class="slots-grid">
-                <div class="slot-card">
+                <!-- Slot OCCUPATO (Non cliccabile) -->
+                <div class="slot-card booked">
                     <div class="slot-time">09:00</div>
                     <span class="slot-status status-booked">Occupato</span>
                 </div>
-                <div class="slot-card">
+                <!-- Slot LIBERO (Cliccabile) -->
+                <div class="slot-card available" onclick="apriSceltaMaestro('10:30')">
                     <div class="slot-time">10:30</div>
                     <span class="slot-status status-available">Libero</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card available" onclick="apriSceltaMaestro('12:00')">
                     <div class="slot-time">12:00</div>
                     <span class="slot-status status-available">Libero</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card booked">
                     <div class="slot-time">15:30</div>
                     <span class="slot-status status-booked">Occupato</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card available" onclick="apriSceltaMaestro('17:00')">
                     <div class="slot-time">17:00</div>
                     <span class="slot-status status-available">Libero</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card booked">
                     <div class="slot-time">18:30</div>
                     <span class="slot-status status-booked">Occupato</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card booked">
                     <div class="slot-time">20:00</div>
                     <span class="slot-status status-booked">Occupato</span>
                 </div>
-                <div class="slot-card">
+                <div class="slot-card available" onclick="apriSceltaMaestro('21:30')">
                     <div class="slot-time">21:30</div>
                     <span class="slot-status status-available">Libero</span>
                 </div>
@@ -225,12 +265,29 @@
         </div>
     </section>
 
+    <!-- LA FINESTRA A SCOMPARSA (MODALE) PER LA SCELTA DEL MAESTRO -->
+    <div id="modal-maestri" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="chiudiSceltaMaestro()">&times;</span>
+            <h3>Slot delle <span id="orario-selezionato" style="color: var(--primary-color);"></span></h3>
+            <p>Ottimo! Chi vuoi come maestro per questa sessione?</p>
+            
+            <div class="coach-buttons">
+                <!-- I bottoni inviano i dati alla funzione WhatsApp -->
+                <button class="coach-btn" onclick="prenotaWhatsApp('King')">🥇 Maestro "King"</button>
+                <button class="coach-btn" onclick="prenotaWhatsApp('Swing')">🎾 Maestra "Swing"</button>
+                <button class="coach-btn" onclick="prenotaWhatsApp('Flash')">⚡ Maestro "Flash"</button>
+                <button class="coach-btn" onclick="prenotaWhatsApp('Prof')">🎓 Maestra "Prof"</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEZIONE MAESTRI PADEL -->
     <section class="coaches-section">
         <h2 class="section-title">Lo Staff Tecnico</h2>
         <p style="text-align: center; color: var(--text-muted); font-size: 18px;">Istruttori federali qualificati per lezioni singole, di coppia o clinic intensive.</p>
         
         <div class="coaches-grid">
-            
             <div class="coach-card">
                 <div class="coach-avatar-box">🥇</div>
                 <div class="coach-info">
@@ -266,10 +323,10 @@
                     <p>Dedicata ai corsi di avviamento per principianti e alle clinic intensive per ragazzi dai 6 ai 16 anni. Metodo dinamico.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
+    <!-- FOOTER IDENTICO ALLA HOME -->
     <footer>
         <div class="footer-content">
             <div class="contact-info">
@@ -291,6 +348,51 @@
             Progettato in puro codice da The Orbis Project
         </div>
     </footer>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT JAVASCRIPT: IL MOTORE DELL'INTERAZIONE -->
+    <!-- ========================================== -->
+    <script>
+        // 1. GENERATORE DATA DINAMICA (Sempre aggiornata)
+        const dateElement = document.getElementById('data-odierna');
+        const oggi = new Date();
+        const opzioni = { weekday: 'long', day: 'numeric', month: 'long' };
+        const dataFormattata = oggi.toLocaleDateString('it-IT', opzioni);
+        // Mette la prima lettera maiuscola
+        const dataFinale = dataFormattata.charAt(0).toUpperCase() + dataFormattata.slice(1);
+        dateElement.innerHTML = `📅 Oggi: ${dataFinale}`;
+
+        // 2. FUNZIONI DELLA FINESTRA A SCOMPARSA E WHATSAPP
+        let orarioScelto = '';
+
+        // Apre la finestra quando clicchi uno slot libero
+        function apriSceltaMaestro(orario) {
+            orarioScelto = orario;
+            document.getElementById('orario-selezionato').innerText = orario;
+            document.getElementById('modal-maestri').style.display = 'flex';
+        }
+
+        // Chiude la finestra se clicchi la X
+        function chiudiSceltaMaestro() {
+            document.getElementById('modal-maestri').style.display = 'none';
+        }
+
+        // Genera il link WhatsApp e apre l'App o la WebApp
+        function prenotaWhatsApp(nomeMaestro) {
+            // Sostituisci il numero qui sotto con quello reale del centro sportivo
+            const numeroTelefono = "390551234567"; 
+            const messaggio = `Ciao! Vorrei prenotare il campo da Padel per oggi alle ${orarioScelto} con il maestro '${nomeMaestro}'.`;
+            
+            // Crea il link codificato per WhatsApp
+            const urlWhatsApp = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(messaggio)}`;
+            
+            // Apre WhatsApp in una nuova scheda
+            window.open(urlWhatsApp, '_blank');
+            
+            // Chiude la finestrella
+            chiudiSceltaMaestro();
+        }
+    </script>
 
 </body>
 </html>
