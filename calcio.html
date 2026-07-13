@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campi da Calcio | Centro Sportivo Michelangelo</title>
+    <title>Palestra & Fitness | Centro Sportivo Michelangelo</title>
     <style>
         /* === INTESTAZIONE E STILE IDENTICI ALLA HOME === */
         :root {
@@ -13,6 +13,7 @@
             --card-bg: #047857; 
             --text-light: #ffffff; 
             --text-muted: #d1fae5; 
+            --paypal-color: #ffc439; /* Giallo ufficiale PayPal per il bottone */
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,14 +52,15 @@
         nav a:hover { color: var(--accent-color); }
         nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
 
-        /* HERO SECTION CALCIO */
+        /* HERO SECTION PALESTRA */
         .hero { padding: 80px 5%; text-align: center; }
         
         .hero h1 {
             font-size: 64px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
-            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            /* Modifica: Gradiente metallico che ricorda la ghisa e l'acciaio degli attrezzi */
+            background: -webkit-linear-gradient(45deg, #e0e0e0, #7a7a7a, #2b2b2b);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         .hero p { font-size: 26px; color: var(--text-muted); margin-bottom: 50px; font-weight: 500; }
         
@@ -67,57 +69,65 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-color);
         }
 
-        /* SEZIONE OPZIONI CAMPI */
-        .fields-section { padding: 80px 5%; }
+        /* SEZIONE DETTAGLI PALESTRA */
+        .gym-details { padding: 80px 5%; }
         .section-title { text-align: center; font-size: 40px; margin-bottom: 50px; text-transform: uppercase; }
         
         .grid-container {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;
         }
 
-        .field-card {
+        .detail-card {
             background-color: var(--card-bg); padding: 40px 30px; border-radius: 12px;
             text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             border-top: 4px solid var(--primary-color);
         }
-        .field-card h3 { font-size: 26px; margin-bottom: 15px; color: white; }
-        .field-card p { font-size: 16px; color: var(--text-muted); }
-        .field-card .icon { font-size: 50px; margin-bottom: 20px; }
+        .detail-card h3 { font-size: 26px; margin-bottom: 15px; color: white; }
+        .detail-card p { font-size: 16px; color: var(--text-muted); }
+        .detail-card .icon { font-size: 50px; margin-bottom: 20px; }
 
-        /* SEZIONE FORM TORNEI */
-        .tournament-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
-        .form-container {
-            max-width: 650px; margin: 0 auto; background-color: var(--card-bg);
-            border-radius: 12px; padding: 40px; box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .form-container h3 { font-size: 28px; text-align: center; margin-bottom: 10px; color: var(--accent-color); text-transform: uppercase; }
-        .form-container p { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
+        /* SEZIONE LISTINO PREZZI E PAGAMENTI */
+        .pricing-section { padding: 60px 5%; background-color: rgba(4, 120, 87, 0.3); }
         
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Stile degli input dentro il form */
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 12px 15px; background-color: rgba(2, 44, 34, 0.6);
-            border: 2px solid rgba(255,255,255,0.1); border-radius: 6px;
-            color: white; font-size: 16px; font-family: inherit; transition: border-color 0.3s;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--primary-color);
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;
         }
         
-        /* Opzioni del menu a tendina scure */
-        .form-group select option { background-color: #047857; color: white; }
-        
-        .submit-btn {
-            width: 100%; padding: 15px; background-color: var(--primary-color);
-            border: none; border-radius: 6px; color: #022c22; font-size: 18px;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            cursor: pointer; transition: background-color 0.3s, transform 0.2s;
-            margin-top: 10px;
+        .price-card {
+            background-color: var(--card-bg); border-radius: 16px; padding: 40px 30px;
+            text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border: 2px solid transparent; position: relative; transition: transform 0.3s;
         }
-        .submit-btn:hover { background-color: #22c55e; transform: translateY(-2px); }
+        .price-card:hover { transform: translateY(-5px); }
+        
+        /* Evidenziazione per l'offerta Annuale (Marketing Strategico) */
+        .price-card.featured {
+            border-color: var(--accent-color);
+        }
+        .badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background-color: var(--accent-color); color: #022c22; padding: 4px 15px;
+            border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase;
+        }
+        
+        .plan-name { font-size: 22px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; color: white; }
+        .plan-price { font-size: 48px; font-weight: 900; color: white; margin-bottom: 5px; }
+        .plan-price span { font-size: 18px; font-weight: 500; color: var(--text-muted); }
+        .plan-savings { font-size: 14px; color: var(--accent-color); font-weight: 600; margin-bottom: 25px; min-height: 20px; }
+        
+        .plan-features { list-style: none; margin-bottom: 35px; text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .plan-features li { margin-bottom: 12px; font-size: 15px; color: var(--text-muted); display: flex; align-items: center; }
+        .plan-features li::before { content: "✓"; color: var(--primary-color); font-weight: bold; margin-right: 10px; font-size: 16px; }
+        
+        /* Bottone in stile PayPal */
+        .pay-btn {
+            width: 100%; padding: 14px; background-color: var(--paypal-color);
+            border: none; border-radius: 30px; color: #003087; font-size: 16px;
+            font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 8px; transition: background-color 0.3s, transform 0.1s;
+        }
+        .pay-btn:hover { background-color: #f4b41a; transform: scale(1.02); }
+        .pay-btn img { height: 20px; }
 
         /* FOOTER */
         footer {
@@ -142,7 +152,6 @@
             .hero p { font-size: 18px; margin-bottom: 30px; }
             .hero-image { height: 250px; }
             .section-title { font-size: 30px; margin-bottom: 30px; }
-            .form-container { padding: 25px 20px; }
             .footer-content { flex-direction: column; text-align: center; }
             .contact-info, .map-box { min-width: 100%; }
         }
@@ -150,93 +159,107 @@
 </head>
 <body>
 
+    <!-- NAVIGAZIONE -->
     <header>
         <div class="logo">MICHELANGELO <span>SPORT</span></div>
         <nav>
             <a href="index.html">Home</a>
-            <a href="palestra.html">Palestra</a>
+            <a href="palestra.html" class="active">Palestra</a>
             <a href="padel.html">Padel</a>
             <a href="piscina.html">Piscina</a>
-            <a href="calcio.html" class="active">Calcio</a>
+            <a href="calcio.html">Calcio</a>
         </nav>
     </header>
 
+    <!-- SEZIONE HERO PALESTRA -->
     <section class="hero">
-        <h1>Il Grande Calcio a Firenze</h1>
-        <p>Manti erbosi di ultimissima generazione, illuminazione LED notturna ed eventi spettacolari.</p>
-        <img src="img/calcio-principale.jpg" alt="Campi da Calcio Michelangelo" class="hero-image">
+        <h1>Area Fitness & Bodybuilding</h1>
+        <p>Spazi ampi, attrezzature biomeccaniche d'avanguardia e i migliori trainer al tuo servizio.</p>
+        <img src="img/palestra-principale.jpg" alt="Palestra Centro Sportivo" class="hero-image">
     </section>
 
-    <section class="fields-section">
-        <h2 class="section-title">Le Nostre Strutture</h2>
+    <!-- LE CARATTERISTICHE DELLA PALESTRA -->
+    <section class="gym-details">
+        <h2 class="section-title">Il Nostro Club</h2>
         <div class="grid-container">
             
-            <div class="field-card">
-                <div class="icon">👟</div>
-                <h3>Calcio a 5</h3>
-                <p>Tre campi coperti e scoperti in erba sintetica ad altissimo assorbimento degli urti. Ideali per partite veloci tra amici, tornei aziendali e allenamenti invernali al riparo dalle intemperie.</p>
+            <div class="detail-card">
+                <div class="icon">💪</div>
+                <h3>Sala Pesi & Isotonica</h3>
+                <p>Oltre 600 mq equipaggiati con i migliori macchinari per l'allenamento della forza. Area manubri fino a 50kg, rack multipli per squat e pedane olimpiche per il powerlifting in totale sicurezza.</p>
             </div>
 
-            <div class="field-card">
-                <div class="icon">🏃‍♂️</div>
-                <h3>Calcio a 8</h3>
-                <p>Due campi regolamentari ad ampi spazi con recinzioni a bordo campo ammortizzate. Il perfetto compromesso tra la tattica del grande calcio e il dinamismo dello stretto. Manto drenante perfetto anche sotto la pioggia.</p>
+            <div class="detail-card">
+                <div class="icon">🏃‍♀️</div>
+                <h3>Cardio Fitness</h3>
+                <p>Tapis roulant, bike, ellittiche e climber connessi alla rete. Monitora i tuoi parametri vitali, guarda le tue serie preferite o naviga mentre bruci calorie in un ambiente perfettamente climatizzato.</p>
             </div>
 
-            <div class="field-card">
-                <div class="icon">⚽</div>
-                <h3>Calcio a 11</h3>
-                <p>Il nostro fiore all'occhiello: un campo principale in erba naturale curato quotidianamente da giardinieri professionisti. Dotato di tribune spettatori, spogliatoi dedicati e panchine coperte.</p>
+            <div class="detail-card">
+                <div class="icon">🔥</div>
+                <h3>Corsi Musicali</h3>
+                <p>Un palinsesto completo con più di 40 ore settimanali di lezioni di gruppo: Functional Training, Pilates, Yoga, Spinning e Cross-Training guidati da professionisti dell'energia.</p>
             </div>
 
         </div>
     </section>
 
-    <section class="tournament-section">
-        <div class="form-container">
-            <h3>Iscrivi la tua Squadra</h3>
-            <p>Compila il modulo sottostante per riservare il tuo posto nei prossimi tornei estivi di Calcio a 5 e Calcio a 8.</p>
+    <!-- SEZIONE ABBONAMENTI CON FINTO CHECKOUT PAYPAL -->
+    <section class="pricing-section">
+        <h2 class="section-title">Iscriviti Online</h2>
+        <div class="pricing-grid">
             
-            <form onsubmit="event.preventDefault(); alert('Iscrizione inviata con successo! (Simulazione Orbis Project)');">
-                <div class="form-group">
-                    <label for="team-name">Nome della Squadra</label>
-                    <input type="text" id="team-name" placeholder="Es. Atletico Ma Non Troppo" required>
-                </div>
+            <!-- Abbonamento Mensile -->
+            <div class="price-card">
+                <div class="plan-name">Mensile Open</div>
+                <div class="plan-price">55€<span> / mese</span></div>
+                <div class="plan-savings">Nessun vincolo di rinnovo</div>
+                <ul class="plan-features">
+                    <li>Accesso illimitato sala pesi e cardio</li>
+                    <li>Inclusi spogliatoi e docce calde</li>
+                    <li>Scheda d'allenamento iniziale</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa MENSILE (55.00€).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
 
-                <div class="form-group">
-                    <label for="captain">Nome del Capitano / Referente</label>
-                    <input type="text" id="captain" placeholder="Nome e Cognome" required>
-                </div>
+            <!-- Abbonamento Annuale (Featured) -->
+            <div class="price-card featured">
+                <div class="badge">Più Conveniente</div>
+                <div class="plan-name">Annuale Open</div>
+                <div class="plan-price">39€<span> / mese</span></div>
+                <div class="plan-savings">Risparmi 192€ all'anno</div>
+                <ul class="plan-features">
+                    <li>Tutti i vantaggi del mensile</li>
+                    <li>Accesso a tutti i Corsi di Gruppo</li>
+                    <li>2 Sessioni con Personal Trainer</li>
+                    <li>Blocco abbonamento fino a 30 giorni</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa ANNUALE (468.00€ in soluzione unica).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
 
-                <div class="form-group">
-                    <label for="phone">Numero di Telefono</label>
-                    <input type="tel" id="phone" placeholder="Es. +39 333 1234567" required>
-                </div>
+            <!-- Abbonamento Trimestrale -->
+            <div class="price-card">
+                <div class="plan-name">Trimestrale Open</div>
+                <div class="plan-price">48€<span> / mese</span></div>
+                <div class="plan-savings">Risparmi 21€ sul trimestre</div>
+                <ul class="plan-features">
+                    <li>Tutti i vantaggi del mensile</li>
+                    <li>Accesso a 2 corsi musicali a scelta</li>
+                    <li>Rinnovo flessibile ogni 90 giorni</li>
+                </ul>
+                <button class="pay-btn" onclick="event.preventDefault(); alert('Reindirizzamento simulato al gateway di pagamento sicuro PayPal per la tariffa TRIMESTRALE (144.00€).');">
+                    <span>Paga con</span> <strong>PayPal</strong>
+                </button>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Indirizzo Email</label>
-                    <input type="email" id="email" placeholder="Es. capitano@email.it" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="tournament-type">Seleziona il Torneo</label>
-                    <select id="tournament-type" required>
-                        <option value="" disabled selected>Scegli una competizione...</option>
-                        <option value="c5">Torneo Estivo Calcio a 5 (Inizio 15 Luglio)</option>
-                        <option value="c8">Campionato Apertura Calcio a 8 (Inizio 20 Luglio)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="notes">Note o Richieste Particolari</label>
-                    <textarea id="notes" rows="4" placeholder="Es. Preferenze orari partite o richieste maglie..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Invia Iscrizione</button>
-            </form>
         </div>
     </section>
 
+    <!-- FOOTER IDENTICO ALLA HOME -->
     <footer>
         <div class="footer-content">
             <div class="contact-info">
