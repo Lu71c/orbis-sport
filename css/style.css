@@ -1,446 +1,405 @@
 /* ==========================================================================
-MICHELANGELO SPORT - STILE GLOBALE & SINGLE PAGE APP
-Ottimizzato per tutti i dispositivi (Mobile, Tablet, Desktop)
-========================================================================== */
+   MICHELANGELO SPORT - STILE GLOBALE & SINGLE PAGE APP
+   Ottimizzato per tutti i dispositivi (Mobile, Tablet, Desktop)
+   ========================================================================== */
 
 :root {
-/* Palette Colori Originale Modernizzata /
---primary: #4ade80;       / Verde Prato Neon /
---accent: #facc15;        / Giallo Sole /
---dark-base: #022c22;     / Verde Foresta scurissimo (Sfondo principale) */
+    /* Palette Colori Originale Modernizzata */
+    --primary: #4ade80;         /* Verde Prato Neon */
+    --accent: #facc15;          /* Giallo Sole */
+    --dark-base: #022c22;       /* Verde Foresta scurissimo */
 
-/* Variabili Glassmorphism */
---glass-bg: rgba(6, 78, 59, 0.45);        /* Sfondo pannelli vetro */
---glass-border: rgba(74, 222, 128, 0.25); /* Bordi pannelli vetro */
---glass-blur: blur(12px);                 /* Sfocatura dietro ai pannelli */
+    /* Variabili Glassmorphism */
+    --glass-bg: rgba(6, 78, 59, 0.65);        /* Sfondo pannelli vetro */
+    --glass-border: rgba(74, 222, 128, 0.3);  /* Bordi pannelli vetro */
+    --glass-blur: blur(12px);                 /* Sfocatura dietro ai pannelli */
 
-/* Colori Testo */
---text-main: #ffffff;
---text-muted: #d1fae5;
+    /* Colori Testo */
+    --text-main: #ffffff;
+    --text-muted: #d1fae5;
 
-/* Colori di Stato (per simulazioni) */
---slot-free: #22c55e;
---slot-busy: #ef4444;
---paypal-gold: #ffc439;
+    /* Colori di Stato (per simulazioni) */
+    --slot-free: #22c55e;
+    --slot-busy: #ef4444;
+    --paypal-gold: #ffc439;
 
-/* Font base */
---font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
-
-
+    /* Font base */
+    --font-main: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
 /* ==========================================================================
-RESET & IMPOSTAZIONI BASE (Blocco scorrimento)
-========================================================================== */
-
-{
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-/* Rimuove evidenziazione tocco blu su mobile */
--webkit-tap-highlight-color: transparent;
+   RESET & IMPOSTAZIONI BASE (Blocco scorrimento)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-body, html {
-width: 100%;
-/* Usa dvh (Dynamic Viewport Height) per adattarsi alle barre mobili /
-height: 100dvh;
-font-family: var(--font-main);
-color: var(--text-main);
-/ BLOCCA LO SCORRIMENTO DELLA PAGINA PRINCIPALE */
-overflow: hidden;
-background-color: var(--dark-base);
+html, body {
+    width: 100%;
+    height: 100dvh;
+    font-family: var(--font-main);
+    color: var(--text-main);
+    overflow: hidden;
+    background-color: var(--dark-base);
 }
 
 a {
-text-decoration: none;
-color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 /* ==========================================================================
-SFONDO A SCHERMO INTERO & OVERLAY
-========================================================================== /
+   SFONDO A SCHERMO INTERO & OVERLAY
+   ========================================================================== */
 .background-container {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
-/ Immagine di sfondo caricata dal CSS */
-background-image: url('../img/hero-sport.jpg');
-background-size: cover;
-background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('../img/hero-sport.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .glass-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-/* Gradiente scuro per far leggere bene il testo */
-background: linear-gradient(135deg, rgba(2,44,34,0.85) 0%, rgba(6,78,59,0.7) 100%);
-backdrop-filter: blur(3px);
--webkit-backdrop-filter: blur(3px);
-}
-
-/* Classi condivise per l'effetto Vetro (Glassmorphism) */
-.glass-panel {
-background: var(--glass-bg);
-backdrop-filter: var(--glass-blur);
--webkit-backdrop-filter: var(--glass-blur);
-border-bottom: 1px solid var(--glass-border);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(2, 44, 34, 0.88) 0%, rgba(6, 78, 59, 0.78) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 /* ==========================================================================
-HEADER MINIMAL (Logo)
-========================================================================== */
+   HEADER MINIMAL (Logo)
+   ========================================================================== */
 .top-nav {
-position: fixed;
-top: 0;
-width: 100%;
-height: 60px;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .brand-logo {
-font-size: 1.4rem;
-font-weight: 900;
-letter-spacing: 2px;
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
 .brand-accent {
-color: var(--primary);
+    color: var(--primary);
 }
 
 /* ==========================================================================
-AREA CENTRALE (Hero & Griglia Nodi)
-========================================================================== /
+   AREA CENTRALE (Hero & Griglia Nodi)
+   ========================================================================== */
 .hero-center {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 100%; / Prende tutto lo spazio tra header e dock /
-padding: 70px 20px 90px 20px; / Spazio per evitare sovrapposizioni con nav e dock */
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 70px 20px 90px 20px;
 }
 
 .hero-titles {
-text-align: center;
-margin-bottom: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 #main-title {
-font-size: clamp(2rem, 5vw, 4rem); /* Testo fluido: si adatta automaticamente */
-text-transform: uppercase;
-letter-spacing: 2px;
-margin-bottom: 10px;
-background: -webkit-linear-gradient(45deg, #ffffff, #d1fae5, var(--primary));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-text-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+    font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    background: -webkit-linear-gradient(45deg, #ffffff, #d1fae5, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 #main-subtitle {
-font-size: clamp(1rem, 2vw, 1.3rem);
-color: var(--text-muted);
-font-weight: 500;
+    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
-/* GRIGLIA SPORT (Nodi Interattivi) /
+/* ==========================================================================
+   GRIGLIA SPORT (Nodi con Immagini di Sfondo)
+   ========================================================================== */
 .sports-grid {
-display: grid;
-/ Su PC 4 colonne, su Tablet/Mobile si adatta a 2 */
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 15px;
-width: 100%;
-max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
 }
 
 .sport-node {
-background: var(--glass-bg);
-border: 1px solid var(--glass-border);
-border-radius: 16px;
-padding: 20px 10px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    min-height: 130px;
+}
+
+/* Assegnazione immagini di sfondo per ciascuno sport */
+.sport-node[href="#palestra"] {
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+                url('../img/palestra.jpg') center/cover no-repeat;
+}
+
+.sport-node[href="#padel"] {
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+                url('../img/padel.jpg') center/cover no-repeat;
+}
+
+.sport-node[href="#piscina"] {
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+                url('../img/piscina.jpg') center/cover no-repeat;
+}
+
+.sport-node[href="#calcio"] {
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+                url('../img/calcio.jpg') center/cover no-repeat;
 }
 
 .sport-node:hover, .sport-node:active {
-transform: translateY(-5px);
-background: rgba(74, 222, 128, 0.15);
-border-color: var(--primary);
-box-shadow: 0 10px 25px rgba(74, 222, 128, 0.2);
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px rgba(74, 222, 128, 0.28);
 }
 
 .node-icon {
-font-size: 2.5rem;
-margin-bottom: 10px;
-filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
 }
 
 .node-text h3 {
-font-size: 1.1rem;
-color: var(--primary);
-margin-bottom: 4px;
+    font-size: 1.15rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
 }
 
 .node-text span {
-font-size: 0.75rem;
-color: var(--text-muted);
-text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 /* ==========================================================================
-DOCK INFERIORE (Stile iOS App)
-========================================================================== /
+   DOCK INFERIORE (Stile iOS App)
+   ========================================================================== */
 .bottom-dock {
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 70px;
-/ Safe-area per evitare l'interferenza con la barra orizzontale degli iPhone moderni */
-padding-bottom: env(safe-area-inset-bottom);
-display: flex;
-justify-content: space-around;
-align-items: center;
-z-index: 100;
-border-top: 1px solid var(--glass-border);
-border-bottom: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--glass-border);
 }
 
 .dock-btn {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-flex: 1;
-height: 100%;
-color: var(--text-muted);
-transition: color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
 }
 
 .dock-btn.active, .dock-btn:hover {
-color: var(--primary);
+    color: var(--primary);
 }
 
 .dock-icon {
-font-size: 1.3rem;
-margin-bottom: 4px;
+    font-size: 1.35rem;
+    margin-bottom: 3px;
 }
 
 .dock-label {
-font-size: 0.7rem;
-font-weight: 600;
-text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Pulsante Chiama Ora Evidenziato */
 .call-action .dock-icon {
-background: var(--primary);
-color: var(--dark-base);
-border-radius: 50%;
-width: 35px;
-height: 35px;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-bottom: 2px;
-box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+    background: var(--primary);
+    color: var(--dark-base);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
 }
 
 /* ==========================================================================
-MOTORE MODALI (Finestre a Scomparsa)
-========================================================================== */
+   MOTORE MODALI (Finestre a Scomparsa)
+   ========================================================================== */
 #modal-overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.75);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-z-index: 2000;
-display: flex;
-justify-content: center;
-align-items: center;
-opacity: 1;
-transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #modal-overlay.hidden {
-opacity: 0;
-visibility: hidden;
-pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 #modal-content-box {
-width: 95%;
-max-width: 900px;
-max-height: 85dvh; /* Altezza massima 85% dello schermo /
-background: var(--dark-base);
-border: 1px solid var(--glass-border);
-border-radius: 20px;
-padding: 25px;
-/ QUESTO È L'UNICO PUNTO DOVE È PERMESSO LO SCROLL */
-overflow-y: auto;
-box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-transform: scale(1);
-transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 92%;
+    max-width: 900px;
+    max-height: 85dvh;
+    background: #032019;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #modal-overlay.hidden #modal-content-box {
-transform: scale(0.95) translateY(20px);
+    transform: scale(0.95) translateY(20px);
 }
 
-/* Stile barra di scorrimento interna ai modali (Webkit) */
+/* Banner immagine all'interno dei modali */
+.modal-banner-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--glass-border);
+    display: block;
+}
+
+/* Scrollbar personalizzata per modali */
 #modal-content-box::-webkit-scrollbar {
-width: 6px;
+    width: 6px;
 }
 #modal-content-box::-webkit-scrollbar-track {
-background: rgba(0,0,0,0.2);
-border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 #modal-content-box::-webkit-scrollbar-thumb {
-background: var(--primary);
-border-radius: 10px;
+    background: var(--primary);
+    border-radius: 10px;
 }
 
 /* ==========================================================================
-STILI GLOBALI PER I CONTENUTI INIETTATI VIA JS
-========================================================================== */
-.modal-header-controls {
-display: flex;
-align-items: center;
-gap: 10px;
+   MEDIA QUERIES (Smartphone e Tablet)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .sports-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        max-width: 480px;
+    }
+
+    .sport-node {
+        padding: 18px 8px;
+        min-height: 110px;
+    }
+
+    .node-icon {
+        font-size: 2rem;
+    }
+
+    .node-text h3 {
+        font-size: 1rem;
+    }
+
+    .node-text span {
+        font-size: 0.7rem;
+    }
+
+    #modal-content-box {
+        width: 95%;
+        padding: 18px;
+    }
+
+    .modal-banner-img {
+        height: 160px;
+    }
 }
 
-.close-btn {
-background: rgba(239, 68, 68, 0.15);
-border: 1px solid rgba(239, 68, 68, 0.3);
-color: #f87171;
-padding: 8px 16px;
-border-radius: 8px;
-cursor: pointer;
-font-weight: 700;
-transition: all 0.2s ease;
-}
-.close-btn:hover { background: #ef4444; color: white; }
+@media (max-height: 580px) and (orientation: landscape) {
+    .hero-center {
+        padding-top: 55px;
+        padding-bottom: 65px;
+        flex-direction: row;
+        gap: 20px;
+    }
 
-/* Griglie interne ai modali (Dettagli Servizi) */
-.detail-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 15px;
-margin: 20px 0;
-}
+    .hero-titles {
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.detail-card {
-background: rgba(6, 78, 59, 0.5);
-border: 1px solid rgba(255,255,255,0.05);
-padding: 20px;
-border-radius: 12px;
-}
-.detail-card h4 { color: var(--accent); margin-bottom: 8px; font-size: 1.1rem; }
-.detail-card p { font-size: 0.85rem; color: var(--text-muted); }
-
-/* Sezione Listino e Checkout Simulato (Palestra) */
-.pricing-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 15px;
-margin-top: 20px;
-}
-.price-card {
-background: rgba(0,0,0,0.2);
-border: 1px solid var(--glass-border);
-border-radius: 12px;
-padding: 25px;
-text-align: center;
-position: relative;
-}
-.price-card.featured { border-color: var(--accent); box-shadow: 0 0 20px rgba(250, 204, 21, 0.15); }
-.badge-featured {
-position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-background: var(--accent); color: var(--dark-base); padding: 4px 12px;
-border-radius: 20px; font-size: 0.75rem; font-weight: 900;
-}
-.price-amount { font-size: 2.5rem; font-weight: 900; margin: 10px 0; }
-.price-amount span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
-
-.paypal-btn {
-width: 100%; padding: 12px; background: var(--paypal-gold);
-border: none; border-radius: 30px; color: #003087; font-weight: 800;
-cursor: pointer; font-size: 1rem; margin-top: 15px;
-display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-
-/* Griglia Orari Interattiva (Padel) */
-.time-slots {
-display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin: 20px 0;
-}
-.slot-btn {
-padding: 15px 5px; border-radius: 8px; border: 1px solid transparent; text-align: center;
-font-weight: bold; font-size: 1.1rem; transition: all 0.2s;
-}
-.slot-btn.free { background: rgba(34, 197, 94, 0.1); border-color: var(--slot-free); color: var(--slot-free); cursor: pointer; }
-.slot-btn.free:hover { background: var(--slot-free); color: var(--dark-base); }
-.slot-btn.busy { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: var(--slot-busy); opacity: 0.6; cursor: not-allowed; }
-
-/* Form (Calcio) */
-.cyber-input, .cyber-select, .cyber-textarea {
-width: 100%; padding: 12px; background: rgba(0,0,0,0.3);
-border: 1px solid var(--glass-border); border-radius: 6px;
-color: white; font-family: var(--font-main); margin-bottom: 15px;
-}
-.cyber-input:focus { outline: none; border-color: var(--primary); }
-.cyber-btn-submit {
-width: 100%; padding: 14px; background: rgba(74, 222, 128, 0.15);
-border: 1px solid var(--primary); color: var(--primary); font-weight: bold;
-border-radius: 6px; cursor: pointer; transition: all 0.3s;
-}
-.cyber-btn-submit:hover { background: var(--primary); color: var(--dark-base); }
-
-/* ==========================================================================
-OVERLAY TRANSAZIONE FINTA E PASS SQUADRA (Animazioni)
-========================================================================== */
-.fake-processing-overlay {
-position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-background: var(--dark-base); display: flex; flex-direction: column;
-align-items: center; justify-content: center; z-index: 10; border-radius: 18px;
-}
-.spinner {
-width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1);
-border-top-color: var(--primary); border-radius: 50%;
-animation: spin 1s linear infinite; margin-bottom: 20px;
-}
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* ==========================================================================
-MEDIA QUERIES AGGIUNTIVE (Smartphone orizzontali e compatti)
-========================================================================== /
-@media (max-width: 480px) {
-/ Su schermi molto stretti, forziamo i nodi sport a 2 colonne perfette */
-.sports-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.sport-node { padding: 15px 5px; }
-.node-icon { font-size: 2rem; }
-.node-text h3 { font-size: 0.95rem; }
-.node-text span { font-size: 0.65rem; }
-}
-
-@media (max-height: 600px) {
-/* Smartphone in orizzontale: riduciamo i margini per far entrare tutto */
-.hero-center { padding-top: 60px; padding-bottom: 70px; flex-direction: row; gap: 30px; }
-.hero-titles { margin-bottom: 0; text-align: left; }
+    .sports-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 420px;
+    }
 }
