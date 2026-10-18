@@ -4,19 +4,19 @@
    ========================================================================== */
 
 :root {
-    /* Palette Colori Originale Modernizzata */
+    /* Palette Colori Originale */
     --primary: #4ade80;         /* Verde Prato Neon */
     --accent: #facc15;          /* Giallo Sole */
     --dark-base: #022c22;       /* Verde Foresta scurissimo */
 
     /* Variabili Glassmorphism */
-    --glass-bg: rgba(6, 78, 59, 0.65);        /* Sfondo pannelli vetro */
-    --glass-border: rgba(74, 222, 128, 0.3);  /* Bordi pannelli vetro */
-    --glass-blur: blur(12px);                 /* Sfocatura dietro ai pannelli */
+    --glass-bg: rgba(6, 78, 59, 0.55);        /* Sfondo pannelli vetro */
+    --glass-border: rgba(74, 222, 128, 0.35); /* Bordi pannelli vetro */
+    --glass-blur: blur(12px);                 /* Sfocatura pannelli */
 
     /* Colori Testo */
     --text-main: #ffffff;
-    --text-muted: #d1fae5;
+    --text-muted: #e2fbee;
 
     /* Colori di Stato (per simulazioni) */
     --slot-free: #22c55e;
@@ -52,7 +52,7 @@ a {
 }
 
 /* ==========================================================================
-   SFONDO A SCHERMO INTERO & OVERLAY
+   SFONDO NITIDO & OVERLAY LEGGERO
    ========================================================================== */
 .background-container {
     position: fixed;
@@ -67,15 +67,16 @@ a {
     background-repeat: no-repeat;
 }
 
+/* Overlay schiarito: elimina l'offuscamento verde e valorizza la foto del centro */
 .glass-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(2, 44, 34, 0.88) 0%, rgba(6, 78, 59, 0.78) 100%);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: radial-gradient(circle at center, rgba(2, 44, 34, 0.35) 0%, rgba(2, 44, 34, 0.65) 100%);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
 }
 
 /* ==========================================================================
@@ -91,7 +92,7 @@ a {
     align-items: center;
     justify-content: center;
     z-index: 50;
-    background: var(--glass-bg);
+    background: rgba(2, 44, 34, 0.65);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--glass-border);
@@ -101,6 +102,7 @@ a {
     font-size: 1.35rem;
     font-weight: 900;
     letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .brand-accent {
@@ -119,29 +121,34 @@ a {
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 70px 20px 90px 20px;
+    padding: 70px 16px 85px 16px;
 }
 
 .hero-titles {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.2rem, 3.5vh, 2.5rem);
+    max-width: 850px;
 }
 
+/* Titolo scolpito, nitido e con ombre ad alto contrasto sullo sfondo */
 #main-title {
-    font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+    font-size: clamp(2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-    background: -webkit-linear-gradient(45deg, #ffffff, #d1fae5, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2.5px;
+    margin-bottom: 6px;
+    color: #ffffff;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* Sottotitolo compatto calibrato per stare su una sola riga su mobile */
 #main-subtitle {
-    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+    font-size: clamp(0.72rem, 2.7vw, 1.15rem);
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* ==========================================================================
@@ -152,14 +159,14 @@ a {
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     width: 100%;
-    max-width: 900px;
+    max-width: 920px;
 }
 
 .sport-node {
     position: relative;
     border: 1px solid var(--glass-border);
     border-radius: 16px;
-    padding: 24px 12px;
+    padding: 22px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -167,48 +174,49 @@ a {
     text-align: center;
     overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
     min-height: 130px;
 }
 
-/* Assegnazione immagini di sfondo per ciascuno sport */
+/* Assegnazione immagini di sfondo con velo protettivo per la leggibilità */
 .sport-node[href="#palestra"] {
-    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
                 url('../img/palestra.jpg') center/cover no-repeat;
 }
 
 .sport-node[href="#padel"] {
-    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
                 url('../img/padel.jpg') center/cover no-repeat;
 }
 
 .sport-node[href="#piscina"] {
-    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
                 url('../img/piscina.jpg') center/cover no-repeat;
 }
 
 .sport-node[href="#calcio"] {
-    background: linear-gradient(180deg, rgba(2, 44, 34, 0.72) 0%, rgba(2, 44, 34, 0.9) 100%), 
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
                 url('../img/calcio.jpg') center/cover no-repeat;
 }
 
 .sport-node:hover, .sport-node:active {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 12px 30px rgba(74, 222, 128, 0.28);
+    box-shadow: 0 12px 32px rgba(74, 222, 128, 0.35);
 }
 
 .node-icon {
-    font-size: 2.3rem;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.7));
 }
 
 .node-text h3 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--primary);
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .node-text span {
@@ -216,6 +224,7 @@ a {
     color: var(--text-muted);
     text-transform: uppercase;
     font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* ==========================================================================
@@ -232,7 +241,7 @@ a {
     justify-content: space-around;
     align-items: center;
     z-index: 50;
-    background: var(--glass-bg);
+    background: rgba(2, 44, 34, 0.75);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border-top: 1px solid var(--glass-border);
@@ -246,7 +255,7 @@ a {
     flex: 1;
     height: 100%;
     color: var(--text-muted);
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .dock-btn.active, .dock-btn:hover {
@@ -255,7 +264,7 @@ a {
 
 .dock-icon {
     font-size: 1.35rem;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 
 .dock-label {
@@ -274,8 +283,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 3px;
-    box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+    margin-bottom: 2px;
+    box-shadow: 0 0 14px rgba(74, 222, 128, 0.6);
 }
 
 /* ==========================================================================
@@ -287,7 +296,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.78);
+    background-color: rgba(0, 0, 0, 0.82);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 2000;
@@ -315,7 +324,7 @@ a {
     padding: 24px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
     transform: scale(1);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -352,27 +361,32 @@ a {
    MEDIA QUERIES (Smartphone e Tablet)
    ========================================================================== */
 @media (max-width: 768px) {
+    .hero-center {
+        padding-top: 65px;
+        padding-bottom: 80px;
+    }
+
     .sports-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        max-width: 480px;
+        max-width: 440px;
     }
 
     .sport-node {
-        padding: 18px 8px;
+        padding: 16px 8px;
         min-height: 110px;
     }
 
     .node-icon {
-        font-size: 2rem;
+        font-size: 1.9rem;
     }
 
     .node-text h3 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .node-text span {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
     }
 
     #modal-content-box {
@@ -382,6 +396,13 @@ a {
 
     .modal-banner-img {
         height: 160px;
+    }
+}
+
+@media (max-width: 380px) {
+    #main-subtitle {
+        font-size: 0.68rem;
+        letter-spacing: 0;
     }
 }
 
