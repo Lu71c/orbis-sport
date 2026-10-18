@@ -3,6 +3,44 @@
    ========================================================================== */
 
 const modalData = {
+    'chi-siamo': {
+        title: "🏛️ CHI SIAMO",
+        subtitle: "Il polo d'eccellenza per lo sport e il benessere a Firenze.",
+        content: `
+            <!-- Banner Panoramico Centro Sportivo -->
+            <img src="img/hero-sport.jpg" alt="Centro Sportivo Michelangelo" class="modal-banner-img">
+
+            <div style="line-height: 1.65; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 2rem;">
+                <p style="margin-bottom: 1rem;">
+                    Nato nella cornice panoramica di Piazzale Michelangelo, il nostro centro sportivo è il punto di riferimento a Firenze per chi cerca preparazione atletica, competizione e relax all'aria aperta.
+                </p>
+                <p>
+                    Offriamo un ambiente moderno e inclusivo: dai corsi agonistici per ragazzi fino alle attività ricreative per adulti e famiglie, con attrezzature di livello internazionale e istruttori federali qualificati.
+                </p>
+            </div>
+
+            <!-- I 3 Pilastri del Centro -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="background: rgba(2, 44, 34, 0.5); padding: 1.4rem; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <div style="font-size: 2rem; margin-bottom: 0.4rem;">🏟️</div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.4rem;">Strutture Moderne</h4>
+                    <p style="font-size: 0.83rem; color: var(--text-muted);">Piscina da 50m a sale, campi da padel panoramici, campi da calcio regolamentari e sala fitness climatizzata di 600 mq.</p>
+                </div>
+
+                <div style="background: rgba(2, 44, 34, 0.5); padding: 1.4rem; border-radius: 12px; border-left: 4px solid var(--accent);">
+                    <div style="font-size: 2rem; margin-bottom: 0.4rem;">🥇</div>
+                    <h4 style="color: var(--accent); margin-bottom: 0.4rem;">Staff Federale</h4>
+                    <p style="font-size: 0.83rem; color: var(--text-muted);">Maestri certificati FITP, FIN e preparatori atletici specializzati per lezioni individuali, di squadra o scuola kids.</p>
+                </div>
+
+                <div style="background: rgba(2, 44, 34, 0.5); padding: 1.4rem; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <div style="font-size: 2rem; margin-bottom: 0.4rem;">🤝</div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.4rem;">Comunità & Sport</h4>
+                    <p style="font-size: 0.83rem; color: var(--text-muted);">Oltre 40 ore di corsi settimanali, tornei estivi amatoriali, solarium a bordo vasca e un'area relax pensata per tutti.</p>
+                </div>
+            </div>
+        `
+    },
     'palestra': {
         title: "💪 AREA FITNESS & PESI",
         subtitle: "Spazi ampi, attrezzature biomeccaniche d'avanguardia.",
@@ -82,42 +120,54 @@ const modalData = {
             <div id="padel-step-1">
                 <div style="text-align: center; margin-bottom: 1.5rem;">
                     <h3 id="padel-data-oggi" style="color: var(--accent); font-size: 1.2rem;">📅 Oggi</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Tocca uno slot orario libero per prenotare.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Seleziona uno slot orario libero per prenotare.</p>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; max-width: 600px; margin: 0 auto;">
-                    <!-- Slot Occupati -->
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">09:00</div>
-                        <div style="font-size: 0.7rem; color: #ef4444; text-transform: uppercase;">Occupato</div>
-                    </div>
-                    <!-- Slot Liberi -->
-                    <div onclick="openCoachSelection('10:30')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 15px 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">10:30</div>
+                <!-- Orari realistici: mattina e pomeriggio senza pausa pranzo -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; max-width: 650px; margin: 0 auto;">
+                    <!-- 09:00 Libero -->
+                    <div onclick="openCoachSelection('09:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">09:00</div>
                         <div style="font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold;">Libero</div>
                     </div>
-                    <div onclick="openCoachSelection('12:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 15px 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">12:00</div>
+                    <!-- 10:00 Occupato -->
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px 6px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">10:00</div>
+                        <div style="font-size: 0.7rem; color: #ef4444; text-transform: uppercase;">Occupato</div>
+                    </div>
+                    <!-- 11:00 Libero -->
+                    <div onclick="openCoachSelection('11:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">11:00</div>
                         <div style="font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold;">Libero</div>
                     </div>
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">15:30</div>
+                    <!-- 12:00 Occupato -->
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px 6px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">12:00</div>
                         <div style="font-size: 0.7rem; color: #ef4444; text-transform: uppercase;">Occupato</div>
                     </div>
-                    <div onclick="openCoachSelection('17:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 15px 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">17:00</div>
+                    <!-- 15:00 Libero -->
+                    <div onclick="openCoachSelection('15:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">15:00</div>
                         <div style="font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold;">Libero</div>
                     </div>
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">18:30</div>
+                    <!-- 16:00 Occupato -->
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px 6px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">16:00</div>
                         <div style="font-size: 0.7rem; color: #ef4444; text-transform: uppercase;">Occupato</div>
                     </div>
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">20:00</div>
+                    <!-- 17:00 Libero -->
+                    <div onclick="openCoachSelection('17:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">17:00</div>
+                        <div style="font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold;">Libero</div>
+                    </div>
+                    <!-- 18:00 Occupato -->
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 14px 6px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">18:00</div>
                         <div style="font-size: 0.7rem; color: #ef4444; text-transform: uppercase;">Occupato</div>
                     </div>
-                    <div onclick="openCoachSelection('21:30')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 15px 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">21:30</div>
+                    <!-- 19:00 Libero -->
+                    <div onclick="openCoachSelection('19:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                        <div style="font-size: 1.15rem; font-weight: bold; color: white;">19:00</div>
                         <div style="font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold;">Libero</div>
                     </div>
                 </div>
@@ -261,26 +311,29 @@ function openModal(hash) {
     const overlay = document.getElementById('modal-overlay');
     const dynamicBody = document.getElementById('modal-dynamic-body');
     
-    // Aggiornamento bottoni dock
+    // Aggiornamento stato attivo dei bottoni dock
     document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('active'));
     const activeBtn = document.querySelector(`.dock-btn[href="#${hash}"]`);
     if (activeBtn) activeBtn.classList.add('active');
 
-    // Iniezione HTML Base
+    // Iniezione contenuti modale con pulsante di chiusura superiore e inferiore
     dynamicBody.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; gap: 10px;">
             <div>
                 <h2 style="font-size: 1.8rem; color: var(--primary); text-transform: uppercase;">${data.title}</h2>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">${data.subtitle}</p>
             </div>
-            <button onclick="closeModal()" style="background: rgba(255,255,255,0.1); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">✖</button>
+            <button onclick="closeModal()" style="background: rgba(255,255,255,0.1); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;" title="Chiudi">✖</button>
         </div>
         <div class="modal-inner-content">
             ${data.content}
         </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <button onclick="closeModal()" style="background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 10px 22px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s ease;">← Chiudi e torna alla Home</button>
+        </div>
     `;
 
-    // Aggiornamento data corrente dinamica nel modale Padel
+    // Data dinamica odierna nel modale Padel
     if (hash === 'padel') {
         const dateElement = document.getElementById('padel-data-oggi');
         if (dateElement) {
@@ -295,12 +348,11 @@ function openModal(hash) {
 
 function closeModal() {
     const overlay = document.getElementById('modal-overlay');
-    overlay.classList.add('hidden');
+    if (overlay) overlay.classList.add('hidden');
     history.pushState("", document.title, window.location.pathname + window.location.search);
     
+    // Ripristina stato dock rimuovendo active da tutte le schede
     document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('active'));
-    const homeBtn = document.getElementById('btn-home');
-    if (homeBtn) homeBtn.classList.add('active');
 }
 
 function handleHashChange() {
@@ -325,14 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
     });
-
-    const homeBtn = document.getElementById('btn-home');
-    if (homeBtn) {
-        homeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal();
-        });
-    }
 
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
