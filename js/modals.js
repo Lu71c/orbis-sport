@@ -2,13 +2,27 @@
    MICHELANGELO SPORT - SPA ENGINE (MODALS & LOGIC)
    ========================================================================== */
 
+/* 1. Precaricamento istantaneo delle immagini nella RAM del browser */
+const imagesToPreload = [
+    'img/hero-sport.jpg',
+    'img/palestra-principale.jpg',
+    'img/padel-principale.jpg',
+    'img/piscina-principale.jpg',
+    'img/calcio-principale.jpg'
+];
+
+imagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
 const modalData = {
     'chi-siamo': {
         title: "🏛️ CHI SIAMO",
         subtitle: "Il polo d'eccellenza per lo sport e il benessere a Firenze.",
         content: `
             <!-- Banner Panoramico Centro Sportivo -->
-            <img src="img/hero-sport.jpg" alt="Centro Sportivo Michelangelo" class="modal-banner-img">
+            <img src="img/hero-sport.jpg" alt="Centro Sportivo Michelangelo" class="modal-banner-img" decoding="async">
 
             <div style="line-height: 1.65; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 2rem;">
                 <p style="margin-bottom: 1rem;">
@@ -46,7 +60,7 @@ const modalData = {
         subtitle: "Spazi ampi, attrezzature biomeccaniche d'avanguardia.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/palestra-principale.jpg" alt="Area Palestra e Pesi" class="modal-banner-img">
+            <img src="img/palestra-principale.jpg" alt="Area Palestra e Pesi" class="modal-banner-img" decoding="async">
 
             <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
                 <div style="background: rgba(2, 44, 34, 0.5); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary);">
@@ -69,7 +83,6 @@ const modalData = {
             <h3 style="color: white; font-size: 1.2rem; margin-bottom: 1rem; text-align: center;">SCEGLI IL TUO PIANO</h3>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-                
                 <!-- Trimestrale -->
                 <div style="background: rgba(4, 120, 87, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.5rem; text-align: center;">
                     <h4 style="color: white; margin-bottom: 0.5rem; text-transform: uppercase;">Trimestrale Open</h4>
@@ -115,7 +128,7 @@ const modalData = {
         subtitle: "Strutture panoramiche con manto ufficiale WPT.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/padel-principale.jpg" alt="Campi da Padel" class="modal-banner-img">
+            <img src="img/padel-principale.jpg" alt="Campi da Padel" class="modal-banner-img" decoding="async">
 
             <div id="padel-step-1">
                 <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -123,7 +136,6 @@ const modalData = {
                     <p style="font-size: 0.85rem; color: var(--text-muted);">Seleziona uno slot orario libero per prenotare.</p>
                 </div>
                 
-                <!-- Orari realistici: mattina e pomeriggio senza pausa pranzo -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; max-width: 650px; margin: 0 auto;">
                     <!-- 09:00 Libero -->
                     <div onclick="openCoachSelection('09:00')" style="background: rgba(34, 197, 94, 0.15); border: 1px solid var(--primary); padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
@@ -204,9 +216,10 @@ const modalData = {
         subtitle: "Allenamento, fitness in acqua e relax a bordo vasca.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/piscina-principale.jpg" alt="Piscina Centro Sportivo" class="modal-banner-img">
+            <img src="img/piscina-principale.jpg" alt="Piscina Centro Sportivo" class="modal-banner-img" decoding="async">
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+            <!-- Griglia 2x2 Perfetta su Desktop, 1 Colonna su Mobile -->
+            <div class="grid-2x2">
                 <div style="background: rgba(2, 44, 34, 0.5); padding: 1.5rem; border-radius: 12px; border-top: 3px solid #3a7bd5;">
                     <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏊‍♂️</div>
                     <h4 style="color: white; margin-bottom: 0.5rem;">Vasca 50m</h4>
@@ -235,7 +248,7 @@ const modalData = {
         subtitle: "Campi a 5, 8 e 11 con erba sintetica e naturale.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/calcio-principale.jpg" alt="Campi da Calcio Michelangelo" class="modal-banner-img">
+            <img src="img/calcio-principale.jpg" alt="Campi da Calcio Michelangelo" class="modal-banner-img" decoding="async">
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
                 <div style="background: rgba(2, 44, 34, 0.5); padding: 1.2rem; border-radius: 12px; text-align: center;">
