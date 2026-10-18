@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 1. SFONDO E OVERLAY (L'immagine hero-sport.jpg sarà richiamata dal CSS) -->
+    <!-- 1. SFONDO E OVERLAY (Immagine hero-sport.jpg nitida e visibile da CSS) -->
     <div class="background-container">
         <div class="glass-overlay"></div>
     </div>
@@ -32,7 +32,6 @@
 
         <!-- 4. GRIGLIA DEGLI SPORT (Touch-friendly per App) -->
         <div class="sports-grid">
-            <!-- I link usano l'hash (#) per attivare i modali in JS senza ricaricare la pagina -->
             <a href="#palestra" class="sport-node">
                 <div class="node-icon">💪</div>
                 <div class="node-text">
@@ -67,31 +66,30 @@
         </div>
     </main>
 
-    <!-- 5. DOCK INFERIORE (Stile iOS - Contatti Rapidi e Mappa) -->
+    <!-- 5. DOCK INFERIORE (Aggiornata: Chi Siamo al posto del tasto Home ridondante) -->
     <nav class="bottom-dock glass-dock">
-        <!-- Pulsante Home per chiudere i modali e tornare alla vista principale -->
-        <a href="#" class="dock-btn active" id="btn-home" title="Home">
-            <span class="dock-icon">🏠</span>
-            <span class="dock-label">Home</span>
+        <!-- Nuova scheda Chi Siamo -->
+        <a href="#chi-siamo" class="dock-btn" title="Chi Siamo">
+            <span class="dock-icon">👥</span>
+            <span class="dock-label">Chi Siamo</span>
         </a>
         
-        <!-- Richiama il modale dinamico dei contatti -->
+        <!-- Scheda Contatti, Mappa e Orari -->
         <a href="#orari-mappa" class="dock-btn" title="Mappa e Orari">
             <span class="dock-icon">📍</span>
             <span class="dock-label">Info</span>
         </a>
         
-        <!-- Funzione nativa per far partire subito la chiamata dal telefono -->
+        <!-- Chiamata diretta -->
         <a href="tel:+390551234567" class="dock-btn call-action" title="Chiama Ora">
             <span class="dock-icon">📞</span>
             <span class="dock-label">Chiama</span>
         </a>
     </nav>
 
-    <!-- 6. CONTENITORE MODALI (Finestre a scomparsa istantanee) -->
+    <!-- 6. CONTENITORE MODALI (Finestre a comparsa istantanee) -->
     <div id="modal-overlay" class="hidden">
         <div id="modal-content-box" class="glass-modal">
-            <!-- Qui il JavaScript inietterà i contenuti dinamici (pagamenti, form, maestri) -->
             <div id="modal-dynamic-body"></div>
         </div>
     </div>
