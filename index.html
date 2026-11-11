@@ -2,13 +2,38 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <!-- Ottimizzazione per impedire lo zoom involontario sui dispositivi mobili -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Ottimizzazione viewport senza restrizioni di zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro Sportivo Michelangelo | L'Energia prende Forma</title>
     <meta name="description" content="Allenamento, competizione e relax nel cuore di Firenze. Scopri i nostri campi da Padel, Calcio, Piscina Olimpionica e Palestra.">
     
     <!-- Fogli di stile -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Media Queries per responsività strutturale esplicita -->
+    <style>
+        @media (max-width: 768px) {
+            .sports-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            #main-title {
+                font-size: 2.2rem;
+            }
+            .bottom-dock {
+                padding: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+            #main-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 1. SFONDO E OVERLAY (Immagine hero-sport.jpg nitida e visibile da CSS) -->
@@ -65,6 +90,16 @@
             </a>
         </div>
     </main>
+
+    <!-- Ancoraggi Nativi Nascosti (Progressive Enhancement - Fallback no-JS) -->
+    <div style="height: 0; width: 0; overflow: hidden; position: absolute;" aria-hidden="true">
+        <div id="palestra"></div>
+        <div id="padel"></div>
+        <div id="piscina"></div>
+        <div id="calcio"></div>
+        <div id="chi-siamo"></div>
+        <div id="orari-mappa"></div>
+    </div>
 
     <!-- 5. DOCK INFERIORE (Aggiornata: Chi Siamo al posto del tasto Home ridondante) -->
     <nav class="bottom-dock glass-dock">
