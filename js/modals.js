@@ -1,6 +1,85 @@
 /* ==========================================================================
-   MICHELANGELO SPORT - SPA ENGINE (MODALS & LOGIC)
+   MICHELANGELO SPORT - SPA ENGINE (MODALS, LOGIC & ORBIS TELEMETRY)
    ========================================================================== */
+
+/* 0. ORBIS PRIVACY-FIRST ANALYTICS ENGINE (Zero Cookie • Zero IP • GDPR-Free) */
+const ORBIS_ANALYTICS = (() => {
+    const ENDPOINT = 'https://smith-anchor-untoasted.ngrok-free.dev/api/v1/analytics/hit';
+    const SITE_ID = document.body?.getAttribute('data-orbis-site') || 'michelangelo-sport';
+    const DWELL_MS = 2000; // Soglia minima di permanenza nel modale (2 secondi)
+    const trackedSessionKeys = new Set();
+    let activeModalTimer = null;
+
+    function sendPulse(eventType, targetId, label = '') {
+        if (!SITE_ID || !targetId) return;
+        const params = new URLSearchParams({
+            site_id: SITE_ID,
+            event_type: eventType,
+            target_id: targetId
+        });
+        if (label) params.set('label', label);
+
+        const url = `${ENDPOINT}?${params.toString()}`;
+        try {
+            fetch(url, {
+                method: 'POST',
+                keepalive: true,
+                headers: { 'ngrok-skip-browser-warning': 'true' }
+            }).catch(() => {});
+        } catch (_) {
+            if (navigator.sendBeacon) navigator.sendBeacon(url);
+        }
+    }
+
+    function trackPageView(pageName) {
+        const cleanPage = (pageName || window.location.pathname.split('/').pop() || 'index.html').trim();
+        const dedupKey = `orbis_pv_${SITE_ID}_${cleanPage}`;
+        if (sessionStorage.getItem(dedupKey)) return;
+        sessionStorage.setItem(dedupKey, '1');
+        sendPulse('page_view', cleanPage);
+    }
+
+    function startModalDwell(sectionId) {
+        cancelModalDwell();
+        if (!sectionId || trackedSessionKeys.has(`sec_${sectionId}`)) return;
+        activeModalTimer = setTimeout(() => {
+            trackedSessionKeys.add(`sec_${sectionId}`);
+            activeModalTimer = null;
+            sendPulse('section_view', sectionId);
+        }, DWELL_MS);
+    }
+
+    function cancelModalDwell() {
+        if (activeModalTimer) {
+            clearTimeout(activeModalTimer);
+            activeModalTimer = null;
+        }
+    }
+
+    function bindClickTracking() {
+        document.addEventListener('click', (e) => {
+            const trackEl = e.target.closest('[data-orbis-track]');
+            if (trackEl) {
+                const trackId = trackEl.getAttribute('data-orbis-track');
+                const trackLabel = trackEl.getAttribute('data-orbis-label') || trackEl.textContent.trim().slice(0, 60);
+                sendPulse('track_click', trackId, trackLabel);
+            }
+        });
+    }
+
+    return {
+        init() {
+            trackPageView('index.html');
+            bindClickTracking();
+        },
+        trackPageView,
+        startModalDwell,
+        cancelModalDwell,
+        trackCustom(trackId, label) {
+            sendPulse('track_click', trackId, label);
+        }
+    };
+})();
 
 /* 1. Precaricamento istantaneo delle immagini nella RAM del browser */
 const imagesToPreload = [
@@ -329,6 +408,10 @@ function openModal(hash) {
     const activeBtn = document.querySelector(`.dock-btn[href="#${hash}"]`);
     if (activeBtn) activeBtn.classList.add('active');
 
+    // Telemetria SPA: vista pagina virtuale + timer lettura reale (>2s)
+    ORBIS_ANALYTICS.trackPageView(hash);
+    ORBIS_ANALYTICS.startModalDwell(hash);
+
     // Iniezione contenuti modale con pulsante di chiusura superiore e inferiore
     dynamicBody.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; gap: 10px;">
@@ -360,6 +443,7 @@ function openModal(hash) {
 }
 
 function closeModal() {
+    ORBIS_ANALYTICS.cancelModalDwell();
     const overlay = document.getElementById('modal-overlay');
     if (overlay) overlay.classList.add('hidden');
     history.pushState("", document.title, window.location.pathname + window.location.search);
@@ -379,6 +463,8 @@ function handleHashChange() {
 
 // Inizializzazione Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    ORBIS_ANALYTICS.init();
+
     const overlay = document.getElementById('modal-overlay');
     
     if (overlay) {
@@ -405,6 +491,7 @@ let selectedPadelTime = '';
 
 function openCoachSelection(time) {
     selectedPadelTime = time;
+    ORBIS_ANALYTICS.trackCustom('padel-slot-selezionato', 'Padel: Scelta Orario');
     const step1 = document.getElementById('padel-step-1');
     const step2 = document.getElementById('padel-step-2');
     const timeDisplay = document.getElementById('selected-padel-time');
@@ -426,6 +513,7 @@ function backToPadelSlots() {
 }
 
 function prenotaPadel(coach) {
+    ORBIS_ANALYTICS.trackCustom('conversion-padel-whatsapp', 'Conversione Padel: Prenotazione WhatsApp');
     const numeroTelefono = "390551234567";
     const msg = coach === 'Senza Maestro' 
         ? `Ciao! Vorrei prenotare il campo libero da Padel per oggi alle ${selectedPadelTime}.`
@@ -437,6 +525,7 @@ function prenotaPadel(coach) {
 
 // 2. PALESTRA: Fake Checkout Dinamico
 function simulateCheckout(planName, price) {
+    ORBIS_ANALYTICS.trackCustom(`conversion-palestra-${planName.toLowerCase().replace(/\s+/g, '-')}`, `Conversione Palestra: ${planName}`);
     const container = document.querySelector('.modal-inner-content');
     if (!container) return;
     
@@ -485,6 +574,8 @@ function submitCalcioForm(event) {
     const tournament = tournamentInput.value;
     const code = 'CUP-' + Math.floor(1000 + Math.random() * 9000);
     
+    ORBIS_ANALYTICS.trackCustom('conversion-calcio-pass', 'Conversione Calcio: Pass Torneo Generato');
+
     const container = document.querySelector('.modal-inner-content');
     if (!container) return;
     
@@ -501,7 +592,7 @@ function submitCalcioForm(event) {
             
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Invia ora un messaggio alla segreteria per convalidare il pass e bloccare il posto.</p>
             
-            <button onclick="window.open('https://wa.me/390551234567?text=' + encodeURIComponent('Ciao! Ho pre-iscritto la squadra ' + '${team}' + ' al torneo. Codice Pass: ' + '${code}'), '_blank')" style="background: #25D366; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+            <button data-orbis-track="conversion-calcio-whatsapp" data-orbis-label="Conversione Calcio: Invio Pass WhatsApp" onclick="window.open('https://wa.me/390551234567?text=' + encodeURIComponent('Ciao! Ho pre-iscritto la squadra ' + '${team}' + ' al torneo. Codice Pass: ' + '${code}'), '_blank')" style="background: #25D366; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
                 💬 Invia Pass su WhatsApp
             </button>
         </div>
