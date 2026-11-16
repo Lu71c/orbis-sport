@@ -5,7 +5,7 @@
 /* 0. ORBIS PRIVACY-FIRST ANALYTICS ENGINE (Zero Cookie • Zero IP • GDPR-Free) */
 const ORBIS_ANALYTICS = (() => {
     const ENDPOINT = 'https://smith-anchor-untoasted.ngrok-free.dev/api/v1/analytics/hit';
-    const SITE_ID = document.body?.getAttribute('data-orbis-site') || 'michelangelo-sport';
+    const SITE_ID = document.body?.getAttribute('data-orbis-site') || 'orbis-sport';
     const DWELL_MS = 2000; // Soglia minima di permanenza nel modale (2 secondi)
     const trackedSessionKeys = new Set();
     let activeModalTimer = null;
