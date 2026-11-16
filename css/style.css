@@ -5,14 +5,14 @@
 
 :root {
     /* Palette Colori Originale */
-    --primary: #4ade80;         /* Verde Prato Neon */
-    --accent: #facc15;          /* Giallo Sole */
-    --dark-base: #022c22;       /* Verde Foresta scurissimo */
+    --primary: #4ade80;          /* Verde Prato Neon */
+    --accent: #facc15;           /* Giallo Sole */
+    --dark-base: #022c22;        /* Verde Foresta scurissimo */
 
     /* Variabili Glassmorphism */
-    --glass-bg: rgba(6, 78, 59, 0.55);        /* Sfondo pannelli vetro */
-    --glass-border: rgba(74, 222, 128, 0.35); /* Bordi pannelli vetro */
-    --glass-blur: blur(12px);                 /* Sfocatura pannelli */
+    --glass-bg: rgba(6, 78, 59, 0.55);         /* Sfondo pannelli vetro */
+    --glass-border: rgba(74, 222, 128, 0.35);  /* Bordi pannelli vetro */
+    --glass-blur: blur(12px);                  /* Sfocatura pannelli */
 
     /* Colori Testo */
     --text-main: #ffffff;
