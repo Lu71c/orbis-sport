@@ -35,37 +35,43 @@
         }
     </style>
 </head>
-<body>
+<body data-orbis-site="michelangelo-sport">
+
     <!-- 1. SFONDO E OVERLAY (Immagine hero-sport.jpg nitida e visibile da CSS) -->
     <div class="background-container">
         <div class="glass-overlay"></div>
     </div>
 
     <!-- 2. HEADER MINIMAL (Glassmorphism) -->
+    <!-- ORBIS-SECTION: brand-header | Intestazione & Logo -->
     <header class="top-nav glass-panel">
         <div class="brand-container">
-            <h1 class="brand-logo">MICHELANGELO <span class="brand-accent">SPORT</span></h1>
+            <!-- ORBIS-TITLE --><h1 class="brand-logo">MICHELANGELO <span class="brand-accent">SPORT</span></h1><!-- /ORBIS-TITLE -->
         </div>
     </header>
+    <!-- /ORBIS-SECTION: brand-header -->
 
     <!-- 3. SCHERMATA PRINCIPALE (Centrale) -->
     <main class="hero-center">
+        <!-- ORBIS-SECTION: hero | Hero & Titolo Principale -->
         <div class="hero-titles">
-            <h2 id="main-title">Sblocca il tuo potenziale</h2>
-            <p id="main-subtitle">Allenamento, competizione e relax nel cuore di Firenze.</p>
+            <!-- ORBIS-TITLE --><h2 id="main-title">Sblocca il tuo potenziale</h2><!-- /ORBIS-TITLE -->
+            <!-- ORBIS-SUBTITLE --><p id="main-subtitle">Allenamento, competizione e relax nel cuore di Firenze.</p><!-- /ORBIS-SUBTITLE -->
         </div>
+        <!-- /ORBIS-SECTION: hero -->
 
         <!-- 4. GRIGLIA DEGLI SPORT (Touch-friendly per App) -->
+        <!-- ORBIS-SECTION: sport-aree | Aree Sportive & Discipline -->
         <div class="sports-grid">
-            <a href="#palestra" class="sport-node">
+            <a href="#palestra" class="sport-node" data-orbis-page="palestra" data-orbis-track="area-palestra" data-orbis-label="Area: Palestra & Fitness">
                 <div class="node-icon">💪</div>
                 <div class="node-text">
-                    <h3>PALESTRA</h3>
-                    <span>Area Fitness & Pesi</span>
+                    <!-- ORBIS-TITLE --><h3>PALESTRA</h3><!-- /ORBIS-TITLE -->
+                    <!-- ORBIS-DESC --><span>Area Fitness &amp; Pesi</span><!-- /ORBIS-DESC -->
                 </div>
             </a>
             
-            <a href="#padel" class="sport-node">
+            <a href="#padel" class="sport-node" data-orbis-page="padel" data-orbis-track="area-padel" data-orbis-label="Area: Prenota Padel">
                 <div class="node-icon">🎾</div>
                 <div class="node-text">
                     <h3>PADEL</h3>
@@ -73,15 +79,15 @@
                 </div>
             </a>
 
-            <a href="#piscina" class="sport-node">
+            <a href="#piscina" class="sport-node" data-orbis-page="piscina" data-orbis-track="area-piscina" data-orbis-label="Area: Piscina & Relax">
                 <div class="node-icon">🏊‍♂️</div>
                 <div class="node-text">
                     <h3>PISCINA</h3>
-                    <span>Nuoto & Relax</span>
+                    <span>Nuoto &amp; Relax</span>
                 </div>
             </a>
 
-            <a href="#calcio" class="sport-node">
+            <a href="#calcio" class="sport-node" data-orbis-page="calcio" data-orbis-track="area-calcio" data-orbis-label="Area: Campi Calcio">
                 <div class="node-icon">⚽</div>
                 <div class="node-text">
                     <h3>CALCIO</h3>
@@ -89,6 +95,7 @@
                 </div>
             </a>
         </div>
+        <!-- /ORBIS-SECTION: sport-aree -->
     </main>
 
     <!-- Ancoraggi Nativi Nascosti (Progressive Enhancement - Fallback no-JS) -->
@@ -102,25 +109,27 @@
     </div>
 
     <!-- 5. DOCK INFERIORE (Aggiornata: Chi Siamo al posto del tasto Home ridondante) -->
+    <!-- ORBIS-SECTION: dock-contatti | Barra Rapida & Telefono -->
     <nav class="bottom-dock glass-dock">
         <!-- Nuova scheda Chi Siamo -->
-        <a href="#chi-siamo" class="dock-btn" title="Chi Siamo">
+        <a href="#chi-siamo" class="dock-btn" title="Chi Siamo" data-orbis-page="chi-siamo" data-orbis-track="dock-chi-siamo" data-orbis-label="Dock: Chi Siamo">
             <span class="dock-icon">👥</span>
             <span class="dock-label">Chi Siamo</span>
         </a>
         
         <!-- Scheda Contatti, Mappa e Orari -->
-        <a href="#orari-mappa" class="dock-btn" title="Mappa e Orari">
+        <a href="#orari-mappa" class="dock-btn" title="Mappa e Orari" data-orbis-page="orari-mappa" data-orbis-track="dock-info-mappa" data-orbis-label="Dock: Info & Mappa">
             <span class="dock-icon">📍</span>
             <span class="dock-label">Info</span>
         </a>
         
         <!-- Chiamata diretta -->
-        <a href="tel:+390551234567" class="dock-btn call-action" title="Chiama Ora">
+        <a href="tel:+390551234567" class="dock-btn call-action" title="Chiama Ora" data-orbis-track="dock-chiama-ora" data-orbis-label="Dock: Chiamata Diretta">
             <span class="dock-icon">📞</span>
-            <span class="dock-label">Chiama</span>
+            <!-- ORBIS-DESC --><span class="dock-label">Chiama</span><!-- /ORBIS-DESC -->
         </a>
     </nav>
+    <!-- /ORBIS-SECTION: dock-contatti -->
 
     <!-- 6. CONTENITORE MODALI (Finestre a comparsa istantanee) -->
     <div id="modal-overlay" class="hidden">
