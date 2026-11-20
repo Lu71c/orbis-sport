@@ -61,7 +61,7 @@ a {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: url('../img/hero-sport.jpg');
+    background-image: url('../img/hero-sport.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -181,22 +181,22 @@ a {
 /* Assegnazione immagini di sfondo con velo protettivo per la leggibilità */
 .sport-node[href="#palestra"] {
     background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
-                url('../img/palestra.jpg') center/cover no-repeat;
+                url('../img/palestra.webp') center/cover no-repeat;
 }
 
 .sport-node[href="#padel"] {
     background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
-                url('../img/padel.jpg') center/cover no-repeat;
+                url('../img/padel.webp') center/cover no-repeat;
 }
 
 .sport-node[href="#piscina"] {
     background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
-                url('../img/piscina.jpg') center/cover no-repeat;
+                url('../img/piscina.webp') center/cover no-repeat;
 }
 
 .sport-node[href="#calcio"] {
     background: linear-gradient(180deg, rgba(2, 44, 34, 0.65) 0%, rgba(2, 44, 34, 0.88) 100%), 
-                url('../img/calcio.jpg') center/cover no-repeat;
+                url('../img/calcio.webp') center/cover no-repeat;
 }
 
 .sport-node:hover, .sport-node:active {
