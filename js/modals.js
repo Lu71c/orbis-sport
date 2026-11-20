@@ -83,11 +83,11 @@ const ORBIS_ANALYTICS = (() => {
 
 /* 1. Precaricamento istantaneo delle immagini nella RAM del browser */
 const imagesToPreload = [
-    'img/hero-sport.jpg',
-    'img/palestra-principale.jpg',
-    'img/padel-principale.jpg',
-    'img/piscina-principale.jpg',
-    'img/calcio-principale.jpg'
+    'img/hero-sport.webp',
+    'img/palestra-principale.webp',
+    'img/padel-principale.webp',
+    'img/piscina-principale.webp',
+    'img/calcio-principale.webp'
 ];
 
 imagesToPreload.forEach(src => {
@@ -101,7 +101,7 @@ const modalData = {
         subtitle: "Il polo d'eccellenza per lo sport e il benessere a Firenze.",
         content: `
             <!-- Banner Panoramico Centro Sportivo -->
-            <img src="img/hero-sport.jpg" alt="Centro Sportivo Michelangelo" class="modal-banner-img" decoding="async">
+            <img src="img/hero-sport.webp" alt="Centro Sportivo Michelangelo" class="modal-banner-img" decoding="async" loading="lazy">
 
             <div style="line-height: 1.65; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 2rem;">
                 <p style="margin-bottom: 1rem;">
@@ -139,7 +139,7 @@ const modalData = {
         subtitle: "Spazi ampi, attrezzature biomeccaniche d'avanguardia.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/palestra-principale.jpg" alt="Area Palestra e Pesi" class="modal-banner-img" decoding="async">
+            <img src="img/palestra-principale.webp" alt="Area Palestra e Pesi" class="modal-banner-img" decoding="async" loading="lazy">
 
             <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
                 <div style="background: rgba(2, 44, 34, 0.5); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary);">
@@ -207,7 +207,7 @@ const modalData = {
         subtitle: "Strutture panoramiche con manto ufficiale WPT.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/padel-principale.jpg" alt="Campi da Padel" class="modal-banner-img" decoding="async">
+            <img src="img/padel-principale.webp" alt="Campi da Padel" class="modal-banner-img" decoding="async" loading="lazy">
 
             <div id="padel-step-1">
                 <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -295,7 +295,7 @@ const modalData = {
         subtitle: "Allenamento, fitness in acqua e relax a bordo vasca.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/piscina-principale.jpg" alt="Piscina Centro Sportivo" class="modal-banner-img" decoding="async">
+            <img src="img/piscina-principale.webp" alt="Piscina Centro Sportivo" class="modal-banner-img" decoding="async" loading="lazy">
 
             <!-- Griglia 2x2 Perfetta su Desktop, 1 Colonna su Mobile -->
             <div class="grid-2x2">
@@ -327,7 +327,7 @@ const modalData = {
         subtitle: "Campi a 5, 8 e 11 con erba sintetica e naturale.",
         content: `
             <!-- Banner Fotografico Principale -->
-            <img src="img/calcio-principale.jpg" alt="Campi da Calcio Michelangelo" class="modal-banner-img" decoding="async">
+            <img src="img/calcio-principale.webp" alt="Campi da Calcio Michelangelo" class="modal-banner-img" decoding="async" loading="lazy">
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
                 <div style="background: rgba(2, 44, 34, 0.5); padding: 1.2rem; border-radius: 12px; text-align: center;">
